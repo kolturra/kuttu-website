@@ -978,22 +978,43 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   var SRI = { 'app-check': 'sha384-E3vxFxXu8FhW5kvqdQJ5Yf8ugrV7iCJP8jgnItRH2Rk8Q08cJzJGTi/oMC3FEp3j', firestore: 'sha384-qn4Jh88HhJA8dplNQyGjOh9OGI4izVhrfj/qIFgaKcdgOE06pXqIKGlsCILZcLAC', storage: 'sha384-6I0gWsz4FIAr30c0TxIxJnPQuJiZ1FfILdZrgJdjxTH3R8dgPGTvexbyqTvReV6Z' };
   var db, st, loading = null;
 
-  function loadJs(name) {
-    return new Promise(function (res, rej) {
+  var jsLoaded = {}, coreDone = false, dbLoading = null;
+  function loadJs(name) {        // each Firebase script is fetched once, however many features ask for it
+    if (jsLoaded[name]) return jsLoaded[name];
+    jsLoaded[name] = new Promise(function (res, rej) {
       var s = document.createElement('script');
       s.src = 'https://www.gstatic.com/firebasejs/10.12.2/firebase-' + name + '-compat.js';
       s.integrity = SRI[name]; s.crossOrigin = 'anonymous'; s.onload = res; s.onerror = rej; document.head.appendChild(s);
     });
+    jsLoaded[name].catch(function () { delete jsLoaded[name]; });
+    return jsLoaded[name];
   }
-  function need() {              // load Firestore + Storage only when a careers feature is used
+  function appCheckKey() {
+    var ack = window.KUTTU_APPCHECK_KEY || '';
+    return (ack && ack.indexOf('_HERE') < 0) ? ack : '';
+  }
+  function initCore() {          // initialise the app and App Check, once
+    if (!firebase.apps.length) firebase.initializeApp(cfg);
+    if (coreDone) return; coreDone = true;
+    var ack = appCheckKey();
+    if (ack) {
+      if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;   // local testing only
+      try { firebase.appCheck().activate(ack, true); } catch (e) {}
+    }
+  }
+  function needDb() {            // Firestore only (profile, purchases): no Storage download, so it is quick
+    if (db) return Promise.resolve();
+    if (dbLoading) return dbLoading;
+    var parts = [loadJs('firestore')];
+    if (appCheckKey()) parts.push(loadJs('app-check'));
+    dbLoading = Promise.all(parts).then(function () { initCore(); db = firebase.firestore(); });
+    dbLoading.catch(function () { dbLoading = null; });
+    return dbLoading;
+  }
+  function need() {              // Firestore + Storage, for the careers form and the staff view
     if (loading) return loading;
     loading = Promise.all([loadJs('app-check'), loadJs('firestore'), loadJs('storage')]).then(function () {
-      if (!firebase.apps.length) firebase.initializeApp(cfg);
-      var ack = window.KUTTU_APPCHECK_KEY || '';
-      if (ack && ack.indexOf('_HERE') < 0) {
-        if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;   // local testing only
-        try { firebase.appCheck().activate(ack, true); } catch (e) {}
-      }
+      initCore();
       db = firebase.firestore(); st = firebase.storage();
     });
     loading.catch(function () { loading = null; });
@@ -1052,12 +1073,12 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   });
 
   /* ---------- 1b. Customer profile (shown after sign-in; also "My profile") ---------- */
-  var pm = $('profileModal'), pAfter = null, pOld = null, pAsked = false;
+  var pm = $('profileModal'), pAfter = null, pOld = null, pAsked = false, pLoaded = false;
   var pSay = function (t, ok) { $('prOut').textContent = t || ''; $('prOut').className = 'msg' + (ok ? ' ok' : ''); };
   var pUser = function () { try { return firebase.auth().currentUser; } catch (e) { return null; } };
   function getProfile(u) {
-    return need().then(function () { return db.collection('profiles').doc(u.uid).get(); })
-      .then(function (s) { return s.exists ? s.data() : null; });
+    return needDb().then(function () { return db.collection('profiles').doc(u.uid).get(); })
+      .then(function (s) { pOld = s.exists ? s.data() : null; pLoaded = true; return pOld; });
   }
   function closeProfile() { pm.classList.remove('open'); pAfter = null; }
   function openProfile(after, first) {
@@ -1149,7 +1170,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
       };
       box.appendChild(vb); foot(); return;
     }
-    need().then(function () { return db.collection('orders').where('email', '==', u.email).limit(20).get(); }).then(function (snap) {
+    needDb().then(function () { return db.collection('orders').where('email', '==', u.email).limit(20).get(); }).then(function (snap) {
       var list = []; snap.forEach(function (d) { list.push(d.data()); });
       list.sort(function (a, b) { return ((b.createdAt && b.createdAt.toMillis()) || 0) - ((a.createdAt && a.createdAt.toMillis()) || 0); });
       if (!list.length) {
@@ -1179,22 +1200,27 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   window.kuttuProfile = {
     open: function () {
       var u = pUser(); if (!u || !ready) return;
-      getProfile(u).then(function (p) { pOld = p; openProfile(null, !p); }).catch(function () { openProfile(null, true); });
+      if (pLoaded) { openProfile(null, !pOld); return; }          // already fetched after sign-in: instant
+      pm.classList.add('open'); pSay(''); $('prSetup').hidden = !!ready;      // show the window at once, fill it in when ready
+      $('prTitle').textContent = 'Your profile'; $('prIntro').textContent = 'Loading your profile\u2026'; $('prGo').disabled = true;
+      var b = $('prBuy'); b.hidden = true; b.textContent = '';
+      getProfile(u).then(function () { openProfile(null, !pOld); })
+        .catch(function () { openProfile(null, true); pSay('We could not load your saved details just now. You can fill them in and save.'); });
     },
     ensure: function (next) {                    // used before paying: carry on only once a profile exists
       var u = pUser();
       if (!u || !ready) { next(); return; }
+      if (pLoaded) { if (pOld) { next(); } else { openProfile(next, true); } return; }
       getProfile(u).then(function (p) {
-        pOld = p;
         if (p) { next(); } else { openProfile(next, true); }
       }).catch(function () { next(); });         // never block paying because the profile could not be read
     }
   };
   window.addEventListener('kuttu-auth', function (e) {     // first sign-in: ask for the details once
-    if (!e.detail || !e.detail.signedIn) { pAsked = false; pOld = null; closeProfile(); return; }
+    if (!e.detail || !e.detail.signedIn) { pAsked = false; pOld = null; pLoaded = false; closeProfile(); return; }
     var u = pUser(); if (!u || !ready || pAsked) return;
-    pAsked = true;
-    getProfile(u).then(function (p) { pOld = p; if (!p) openProfile(null, true); }).catch(function () {});
+    pAsked = true;          // fetched right after sign-in, so My profile opens instantly later
+    getProfile(u).then(function (p) { if (!p) openProfile(null, true); }).catch(function () {});
   });
   $('prClose').onclick = closeProfile; $('prPriv').onclick = closeProfile;
   pm.addEventListener('click', function (e) { if (e.target === pm) closeProfile(); });
@@ -1213,12 +1239,13 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
     if (!$('prConsent').checked) return pSay('Please tick the box to agree.');
     if (!ready) return pSay('Profiles are not switched on yet.');
     $('prGo').disabled = true; pSay('Saving…', true);
-    need().then(function () {
+    needDb().then(function () {
       d.updatedAt = firebase.firestore.FieldValue.serverTimestamp();
       d.createdAt = (pOld && pOld.createdAt) ? pOld.createdAt : firebase.firestore.FieldValue.serverTimestamp();
-      return db.collection('profiles').doc(u.uid).set(d);
-    }).then(function () {
-      pOld = d; var go = pAfter; pAfter = null; pm.classList.remove('open');
+      var ref = db.collection('profiles').doc(u.uid);
+      return ref.set(d).then(function () { return ref.get(); });          // read back, so createdAt is the stored value
+    }).then(function (snap) {
+      pOld = snap.exists ? snap.data() : d; pLoaded = true; var go = pAfter; pAfter = null; pm.classList.remove('open');
       if (go) go();
     }).catch(function () {
       $('prGo').disabled = false; pSay('Could not save your profile. Please try again, or message us on WhatsApp.');
