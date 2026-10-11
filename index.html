@@ -209,6 +209,16 @@ footer .social span{display:none}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .consent{display:flex!important;gap:10px;align-items:flex-start;font-weight:400!important;font-size:.84rem!important;color:var(--mute);margin-top:16px!important}
 .consent input{width:auto!important;margin:4px 0 0!important}
+.pbuy{margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
+.pbuy h4{font-size:1.1rem;margin:0 0 8px}
+.pbuy .mini{color:var(--mute);font-size:.85rem;margin:6px 0}
+.pbuy .tw{overflow-x:auto}
+.pbuy table{width:100%;border-collapse:collapse;font-size:.84rem}
+.pbuy th,.pbuy td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.pbuy th{color:var(--mute);font-weight:700;font-size:.78rem}
+.pbuy .bill{background:var(--teal-l);border-radius:10px;padding:10px 12px;font-size:.86rem;margin-top:12px;line-height:1.6}
+.pbuy .lnk{background:none;border:0;color:var(--teal);text-decoration:underline;cursor:pointer;font:inherit;padding:0}
+.pbuy .pbtn{width:auto;padding:9px 16px;margin-top:12px}
 .prog{height:8px;border-radius:5px;background:var(--teal-l);overflow:hidden;margin-top:12px;display:none}.prog i{display:block;height:100%;width:0;background:var(--teal)}
 .view{position:fixed;inset:0;z-index:60;background:var(--paper);overflow-y:auto;display:none}
 .view.open{display:block}
@@ -699,7 +709,7 @@ footer a{color:var(--gold-l)}
  <span class="eyebrow">Privacy note</span><h2 style="margin-bottom:18px">How we handle your details</h2>
  <ul class="chk">
   <li><b>What we collect when you sign up:</b> your name and email address or mobile number, from the sign-in method you choose (Google or email). If you sign in with email and password, we never see your password.</li>
-  <li><b>Your profile:</b> after you sign in we also ask for your mobile number, shop or boutique name, type of shop, city and state, and (if you choose) your GST number. You can view and change them any time from <b>My profile</b>.</li>
+  <li><b>Your profile:</b> after you sign in we also ask for your mobile number, shop or boutique name, type of shop, city and state, and (if you choose) your GST number. You can view and change them any time from <b>My profile</b>, which also lists your purchases (reference, date, amount, status) and billing details, matched by your verified email address.</li>
   <li><b>Why:</b> to create your account, let you buy Kuttu, send your download and license key, and give you support. Nothing else.</li>
   <li><b>Who else sees it:</b> the sign-in service that stores accounts (Google Firebase), the payment provider that takes your payment, and the email service that delivers your download link. We do not see your card or UPI details, and we do not sell or rent your details to anyone.</li>
   <li><b>If you apply for a job:</b> we collect your name, email, mobile number, the role, any message you write and the resume you upload. Only our hiring team can open them. We use them only to consider you for a role, and you can ask us to delete them at any time.</li>
@@ -774,6 +784,7 @@ footer a{color:var(--gold-l)}
    <button class="pbtn" id="prGo" type="submit" style="margin-top:18px">Save profile</button>
    <div class="msg" id="prOut" role="status"></div>
   </form>
+  <section class="pbuy" id="prBuy" hidden aria-label="Purchases and billing"></section>
  </div>
 </div>
 
@@ -1066,6 +1077,104 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
     $('prCity').value = p.city || ''; $('prState').value = p.state || ''; $('prGst').value = p.gstin || '';
     $('prConsent').checked = !!p.consent; $('prGo').disabled = false;
     pm.classList.add('open');
+    var buy = $('prBuy'); buy.hidden = true; buy.textContent = '';
+    if (!first && !after) renderPurchases(u);            // "My profile": also show purchases and billing
+  }
+
+  /* ---------- Purchases and billing (read-only; matched by the signed-in, verified email) ---------- */
+  var RUPEE = function (paise) {
+    return '\u20B9' + (Number(paise || 0) / 100).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
+  var PSTATUS = { emailed: 'Paid \u00B7 download link emailed', sending: 'Paid \u00B7 sending your link',
+    email_failed: 'Paid \u00B7 email delayed, we are retrying', amount_mismatch: 'Amount short \u00B7 please contact us',
+    no_email: 'Paid \u00B7 no email on the payment, please contact us' };
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function openReceipt(o, prof, u) {
+    var w = window.open('', '_blank'); if (!w) { alert('Please allow pop-ups to open the receipt.'); return; }
+    var when = fmt(o.createdAt), b = prof || {};
+    var rows = [['Payment reference', o.paymentId], ['Date', when], ['Amount paid', RUPEE(o.amount)], ['Item', 'Kuttu Application (one licence, one PC)'],
+      ['Billed to', b.name || u.displayName || ''], ['Shop', b.shopName || ''], ['GST number', b.gstin || '\u2014'],
+      ['City / state', [b.city, b.state].filter(Boolean).join(', ')], ['Email', u.email || ''], ['Mobile', b.phone || o.phone || '']];
+    w.document.write('<!doctype html><meta charset="utf-8"><title>Kuttu payment receipt</title><style>body{font:15px Arial,sans-serif;max-width:560px;margin:30px auto;color:#1c2626}'
+      + 'h1{color:#083f3f;font-size:1.4rem}td{padding:6px 8px;border-bottom:1px solid #ddd}td:first-child{color:#5a6a68;width:38%}small{color:#5a6a68}</style>'
+      + '<h1>Kuttu \u2014 payment receipt</h1><table>' + rows.map(function (r) { return '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td></tr>'; }).join('')
+      + '</table><p><small>This is a payment receipt for your records. Questions: enquiry@kuttu.org or WhatsApp +91 98660 79246.</small></p>'
+      + '<p><button onclick="print()">Print / save as PDF</button></p>');
+    w.document.close();
+  }
+  function renderPurchases(u) {
+    var box = $('prBuy'); box.hidden = false; box.textContent = '';
+    box.appendChild(el('h4', { text: 'Your purchases and billing' }));
+    var info = el('p', { cls: 'mini', text: 'Loading your purchases\u2026' }); box.appendChild(info);
+    var out = el('div', { cls: 'msg' });
+    var wa = 'https://wa.me/919866079246?text=' + encodeURIComponent('Hi Kuttu, I need help with my purchase (' + (u.email || '') + ')');
+    function foot() {
+      var b = el('div', { cls: 'bill' });
+      var p = pOld;
+      b.appendChild(el('b', { text: 'Billing details' }));
+      if (p) {
+        [['Name', p.name], ['Shop', p.shopName + (p.shopType ? ' (' + p.shopType + ')' : '')], ['GST number', p.gstin || 'not given'],
+         ['City / state', [p.city, p.state].filter(Boolean).join(', ')], ['Email', u.email || p.email || ''], ['Mobile', p.phone]].forEach(function (r) {
+          b.appendChild(el('div', { text: r[0] + ': ' + r[1] }));
+        });
+        b.appendChild(el('div', { cls: 'mini', text: 'To change these, edit the form above and save.' }));
+      } else {
+        b.appendChild(el('div', { cls: 'mini', text: 'Fill in and save the form above to add your billing details.' }));
+      }
+      box.appendChild(b);
+      var send = el('button', { cls: 'pbtn alt', type: 'button', text: 'Email me a new download link' });
+      send.onclick = function () {
+        var url = window.KUTTU_NEWLINK_URL || '';
+        if (!u.email) { out.textContent = 'Your account has no email address.'; return; }
+        if (!url || url.indexOf('_HERE') >= 0) { out.textContent = 'Download links are not switched on yet. Please message us on WhatsApp.'; return; }
+        out.className = 'msg ok'; out.textContent = 'Sending\u2026';
+        fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: u.email }) })
+          .then(function (r) { return r.json(); }).then(function (j) { out.textContent = j.message || 'Done.'; })
+          .catch(function () { out.className = 'msg'; out.textContent = 'Could not reach the server. Please try again.'; });
+      };
+      box.appendChild(send);
+      box.appendChild(out);
+      var help = el('p', { cls: 'mini' });
+      help.appendChild(document.createTextNode('Need help with a payment? '));
+      help.appendChild(el('a', { href: wa, target: '_blank', rel: 'noopener', text: 'Message us on WhatsApp' }));
+      box.appendChild(help);
+    }
+    if (!u.email) { info.textContent = 'Purchases are matched by email address. Sign in with Google or an email account to see them.'; foot(); return; }
+    if (!u.emailVerified) {
+      info.textContent = 'Please verify your email address to see your purchases.';
+      var vb = el('button', { cls: 'lnk', type: 'button', text: 'Send me a verification email' });
+      vb.onclick = function () {
+        u.sendEmailVerification().then(function () { info.textContent = 'Verification email sent. Open it, then reopen My profile.'; vb.hidden = true; })
+          .catch(function () { info.textContent = 'Could not send the email right now. Please try again later.'; });
+      };
+      box.appendChild(vb); foot(); return;
+    }
+    need().then(function () { return db.collection('orders').where('email', '==', u.email).limit(20).get(); }).then(function (snap) {
+      var list = []; snap.forEach(function (d) { list.push(d.data()); });
+      list.sort(function (a, b) { return ((b.createdAt && b.createdAt.toMillis()) || 0) - ((a.createdAt && a.createdAt.toMillis()) || 0); });
+      if (!list.length) {
+        info.textContent = 'No purchase found for ' + u.email + '. If you paid with a different email, message us on WhatsApp and we will link it.';
+        foot(); return;
+      }
+      info.textContent = list.length === 1 ? '1 purchase' : list.length + ' purchases';
+      var tw = el('div', { cls: 'tw' }), t = el('table'), hr = el('tr');
+      ['Date', 'Reference', 'Amount', 'Status', ''].forEach(function (h) { hr.appendChild(el('th', { text: h })); });
+      t.appendChild(hr);
+      list.forEach(function (o) {
+        var r = el('tr'), act = el('td');
+        r.appendChild(el('td', { text: fmt(o.createdAt) }));
+        r.appendChild(el('td', { text: String(o.paymentId || '').slice(-12) }));
+        r.appendChild(el('td', { text: RUPEE(o.amount) }));
+        r.appendChild(el('td', { text: PSTATUS[o.status] || o.status || '' }));
+        if (o.status !== 'amount_mismatch') {
+          var rb = el('button', { cls: 'lnk', type: 'button', text: 'Receipt' });
+          rb.onclick = function () { openReceipt(o, pOld, u); };
+          act.appendChild(rb);
+        }
+        r.appendChild(act); t.appendChild(r);
+      });
+      tw.appendChild(t); box.appendChild(tw); foot();
+    }).catch(function () { info.textContent = 'Could not load your purchases right now. Please try again later.'; foot(); });
   }
   window.kuttuProfile = {
     open: function () {
