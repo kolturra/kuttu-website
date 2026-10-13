@@ -1046,7 +1046,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   };
   $('aReset').onclick = function () {
     var em = $('aEmail').value.trim(); if (!em) { say('Type your email above first.'); return; }
-    auth.sendPasswordResetEmail(em).then(function () { say('Password reset email sent.', true); }).catch(function (e) { say(nice(e)); });
+    auth.sendPasswordResetEmail(em).then(function () { say('If an account exists for this email, a reset link is on its way. Check Inbox, Updates, Promotions and Spam. No email? You may not have an account yet: use Create account.', true); }).catch(function (e) { say(nice(e)); });
   };
   $('aSendOtp').onclick = function () {
     var n = $('aPhone').value.replace(/\D/g, '');
