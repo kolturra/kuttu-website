@@ -35,15 +35,16 @@ section{padding-block:76px}
 .btn.gold{background:var(--gold-l);border-color:var(--gold-l);color:var(--teal-d)}
 /* header */
 header{position:sticky;top:0;z-index:20;background:rgba(251,248,242,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.bar{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.bar{display:flex;align-items:center;justify-content:flex-start;height:64px;gap:16px}
 header .wrap{max-width:87.5rem}
 .brand{flex:none;display:flex;align-items:center;gap:10px;text-decoration:none;font:600 1.5rem var(--serif);color:var(--teal)}
 .brand svg{width:34px;height:34px}
+nav{margin-right:auto;margin-left:10px}
 nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
 nav a{text-decoration:none;color:var(--ink);font-weight:600;font-size:.88rem;white-space:nowrap}nav a:hover{color:var(--teal)}
 #nt,.burger{display:none}
 @media(max-width:1340px){
- .burger{display:block;cursor:pointer;font-size:1.6rem;color:var(--teal);line-height:1}
+ .burger{margin-left:auto;display:block;cursor:pointer;font-size:1.6rem;color:var(--teal);line-height:1}
  nav{position:absolute;left:0;right:0;top:64px;background:var(--paper);border-bottom:1px solid var(--line);display:none}
  #nt:checked~nav{display:block}
  nav ul{flex-direction:column;gap:0;padding:8px 20px 16px}nav li a{display:block;padding:10px 0}
@@ -203,6 +204,8 @@ footer .social span{display:none}
 .mbox select,.mbox textarea{width:100%;padding:11px 12px;margin-top:6px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
 .mbox textarea{min-height:90px;resize:vertical}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.phrow{display:flex;gap:8px}.phrow select{flex:0 0 46%;min-width:0;width:auto}.phrow input{flex:1;min-width:0}
+.rq{color:var(--red)}.hint{display:block;color:var(--mute);font-size:.76rem;margin-top:4px;min-height:1em}
 @media(max-width:560px){.frow{grid-template-columns:1fr}}
 .drop{border:2px dashed var(--line);border-radius:12px;padding:14px;background:#faf6ec;margin-top:6px}
 .drop input{border:0;padding:0;margin:0}
@@ -676,7 +679,7 @@ footer a{color:var(--gold-l)}
  <p class="lead" style="margin-inline:auto">Tell us what you sell and how you work — we'll tell you honestly whether Kuttu fits.</p>
  <div class="cta" style="justify-content:center;margin-top:24px">
   <a class="btn" href="https://wa.me/919866079246?text=Hi%20Kuttu%2C%20I%27d%20like%20to%20know%20more">Message us on WhatsApp</a>
-  <a class="btn ghost" href="mailto:enquiry@kuttu.org">Or email us</a></div>
+  <a data-mail class="btn ghost" href="mailto:enquiry@kuttu.org">Or email us</a></div>
  <div class="social"><a href="https://www.instagram.com/kuttu_1110/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.9 1.4 1.4 0 000-2.9z"/></svg><span>Instagram</span></a><a href="https://wa.me/919866079246" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.6.1c-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.6 1 3.1.8 3.7.8.6-.1 1.8-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 21.8a9.8 9.8 0 01-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1112 21.8zM12 0a12 12 0 00-10.3 18L0 24l6.2-1.6A12 12 0 1012 0z"/></svg><span>WhatsApp</span></a></div>
 </div></section>
 </main>
@@ -691,8 +694,8 @@ footer a{color:var(--gold-l)}
   <button class="sbtn" data-provider="microsoft" hidden>Continue with Microsoft</button>
   <button class="sbtn" data-provider="twitter" hidden>Continue with X (Twitter)</button>
   <div class="or">OR EMAIL</div>
-  <input type="email" id="aEmail" placeholder="Email address" autocomplete="email">
-  <input type="password" id="aPass" placeholder="Password (6+ characters)" autocomplete="current-password">
+  <input type="email" id="aEmail" placeholder="Email address" autocomplete="off">
+  <input type="password" id="aPass" placeholder="Password (6+ characters)" autocomplete="new-password">
   <div class="row"><button class="pbtn" id="aSignin">Sign in</button><button class="pbtn alt" id="aSignup">Create account</button></div>
   <button class="x" style="position:static;font-size:.8rem;text-decoration:underline;color:var(--teal);margin-top:8px" id="aReset">Forgot password?</button>
   <!-- Phone OTP hidden until Phone sign-in (SMS) is switched on in Firebase; remove hidden to bring it back. -->
@@ -725,7 +728,7 @@ footer a{color:var(--gold-l)}
  <div><a class="brand" href="#top" style="color:#fff"><svg role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>kuttu</a>
   <p style="margin:10px 0 0">Software for boutiques and tailoring shops.</p>
   <div class="social"><a href="https://www.instagram.com/kuttu_1110/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.9 1.4 1.4 0 000-2.9z"/></svg><span>Instagram</span></a><a href="https://wa.me/919866079246" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.6.1c-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.6 1 3.1.8 3.7.8.6-.1 1.8-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 21.8a9.8 9.8 0 01-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1112 21.8zM12 0a12 12 0 00-10.3 18L0 24l6.2-1.6A12 12 0 1012 0z"/></svg><span>WhatsApp</span></a></div></div>
- <div>WhatsApp / Phone: <a href="tel:+919866079246" style="color:var(--gold-l)">+91 98660 79246</a><br>Email: <a href="mailto:enquiry@kuttu.org" style="color:var(--gold-l)">enquiry@kuttu.org</a><br><a href="#privacy">Privacy note</a> · © 2026 Kuttu</div>
+ <div>WhatsApp / Phone: <a href="tel:+919866079246" style="color:var(--gold-l)">+91 98660 79246</a><br>Email: <a data-mail href="mailto:enquiry@kuttu.org" style="color:var(--gold-l)">enquiry@kuttu.org</a><br><a href="#privacy">Privacy note</a> · © 2026 Kuttu</div>
 </div></footer>
 <div class="modal" id="applyModal" role="dialog" aria-modal="true" aria-labelledby="apTitle">
  <div class="mbox wide">
@@ -767,23 +770,28 @@ footer a{color:var(--gold-l)}
   <p style="color:var(--mute);margin:0 0 4px;font-size:.92rem" id="prIntro">Tell us a little about you and your shop so we can set up your account and support you properly.</p>
   <div class="setup" id="prSetup" hidden>Profiles aren't switched on yet: fill in the KUTTU_FIREBASE block near the bottom of this page (see firebase/SETUP.md).</div>
   <form id="prForm" novalidate>
+   <p class="hint" style="margin:6px 0 0">Fields marked <b class="rq">*</b> are required. Only the GST number is optional.</p>
    <div class="frow">
-    <div><label for="prName">Full name</label><input type="text" id="prName" maxlength="100" autocomplete="name"></div>
-    <div><label for="prPhone">Mobile number <small>(WhatsApp preferred)</small></label><input type="tel" id="prPhone" maxlength="20" autocomplete="tel"></div>
+    <div><label for="prName">Full name <b class="rq">*</b></label><input type="text" id="prName" maxlength="100" autocomplete="name" required></div>
+    <div><label for="prPhone">Mobile number <b class="rq">*</b> <small>(WhatsApp preferred)</small></label>
+     <div class="phrow"><select id="prDial" aria-label="Country code"></select><input type="tel" id="prPhone" inputmode="numeric" autocomplete="off" required></div>
+     <span class="hint" id="prPhoneHint"></span></div>
    </div>
-   <label for="prEmail">Email</label><input type="email" id="prEmail" maxlength="150" autocomplete="email" readonly>
+   <label for="prEmail">Email <b class="rq">*</b></label><input type="email" id="prEmail" maxlength="150" autocomplete="email" readonly required>
    <div class="frow">
-    <div><label for="prShop">Shop / boutique name</label><input type="text" id="prShop" maxlength="120" autocomplete="organization"></div>
-    <div><label for="prType">Type of shop</label>
-     <select id="prType"><option>Boutique</option><option>Tailoring shop</option><option>Saree shop</option><option>Readymade garments</option><option>Fabric / lining shop</option><option>Other</option></select></div>
+    <div><label for="prShop">Shop / boutique name <b class="rq">*</b></label><input type="text" id="prShop" maxlength="120" autocomplete="organization" required></div>
+    <div><label for="prType">Type of shop <b class="rq">*</b></label>
+     <select id="prType" required><option>Boutique</option><option>Tailoring shop</option><option>Saree shop</option><option>Readymade garments</option><option>Fabric / lining shop</option><option>Other</option></select></div>
    </div>
    <div class="frow">
-    <div><label for="prCity">City / town</label><input type="text" id="prCity" maxlength="80" autocomplete="address-level2"></div>
-    <div><label for="prState">State</label><input type="text" id="prState" maxlength="60" autocomplete="address-level1"></div>
+    <div><label for="prCountry">Country <b class="rq">*</b></label><select id="prCountry" required autocomplete="off"></select></div>
+    <div><label for="prStateSel">State / province <b class="rq">*</b></label>
+     <select id="prStateSel" autocomplete="off"></select>
+     <input type="text" id="prState" maxlength="60" autocomplete="off" placeholder="State / province / region" hidden></div>
    </div>
    <div class="frow">
-    <div><label for="prPin">Pincode</label><input type="text" id="prPin" maxlength="12" inputmode="numeric" autocomplete="postal-code"></div>
-    <div><label for="prCountry">Country</label><input type="text" id="prCountry" maxlength="60" autocomplete="country-name" value="India"></div>
+    <div><label for="prCity">City / town <b class="rq">*</b></label><input type="text" id="prCity" maxlength="80" autocomplete="address-level2" required></div>
+    <div><label for="prPin">Pincode / postal code <b class="rq">*</b></label><input type="text" id="prPin" maxlength="12" autocomplete="postal-code" required></div>
    </div>
    <label for="prGst">GST number <small>(optional)</small></label><input type="text" id="prGst" maxlength="15" autocapitalize="characters" autocomplete="off">
    <label class="consent" for="prConsent"><input type="checkbox" id="prConsent"><span>I agree that Kuttu may store these details to set up my account and support me. See the <a href="#privacy" id="prPriv">privacy note</a>.</span></label>
@@ -867,6 +875,43 @@ window.KUTTU_APPCHECK_KEY = "RECAPTCHA_V3_SITE_KEY_HERE";
 /* Address of the requestNewLink function (printed when you deploy the functions; see firebase/SETUP.md, section 7). */
 window.KUTTU_NEWLINK_URL = "REQUEST_NEW_LINK_FUNCTION_URL_HERE";
 </script>
+<script>
+/* Countries (name | dial code | shortest and longest national number, digits) and the states / provinces for the
+   countries listed in S. A country without a list in S gets a free-text State box instead. Lengths follow each
+   country's national numbering plan (digits after the country code, without the leading 0). */
+window.KUTTU_GEO = (function () {
+  var C = ('India|91|10|10;Afghanistan|93|9|9;Antigua and Barbuda|1|10|10;Albania|355|8|9;Algeria|213|8|9;Andorra|376|6|9;Angola|244|9|9;Argentina|54|10|11;Armenia|374|8|8;Aruba|297|7|7;Australia|61|9|9;Austria|43|5|13;Azerbaijan|994|9|9;'
+    + 'Bahamas|1|10|10;Bahrain|973|8|8;Bangladesh|880|8|10;Barbados|1|10|10;Belarus|375|9|10;Belgium|32|8|9;Belize|501|7|7;Benin|229|8|10;Bhutan|975|7|8;Bolivia|591|8|8;Bosnia and Herzegovina|387|8|8;Botswana|267|7|8;Brazil|55|10|11;Brunei|673|7|7;Bulgaria|359|7|9;Burkina Faso|226|8|8;Burundi|257|8|8;'
+    + 'Cambodia|855|8|9;Cameroon|237|9|9;Canada|1|10|10;Cape Verde|238|7|7;Central African Republic|236|8|8;Chad|235|8|8;Chile|56|9|9;China|86|10|11;Colombia|57|8|10;Comoros|269|7|7;Congo (Republic)|242|9|9;Congo (DR)|243|9|9;Costa Rica|506|8|8;Côte d’Ivoire|225|8|10;Croatia|385|8|9;Cuba|53|8|8;Curaçao|599|7|8;Cyprus|357|8|8;Czech Republic|420|9|9;'
+    + 'Denmark|45|8|8;Djibouti|253|8|8;Dominica|1|10|10;Dominican Republic|1|10|10;Ecuador|593|8|9;Egypt|20|8|10;El Salvador|503|8|8;Equatorial Guinea|240|9|9;Eritrea|291|7|7;Estonia|372|7|8;Eswatini|268|8|8;Ethiopia|251|9|9;'
+    + 'Faroe Islands|298|6|6;Fiji|679|7|7;Finland|358|5|12;France|33|9|9;French Polynesia|689|8|8;Gabon|241|7|8;Gambia|220|7|7;Georgia|995|9|9;Germany|49|6|13;Ghana|233|9|9;Gibraltar|350|8|8;Greece|30|10|10;Greenland|299|6|6;Grenada|1|10|10;Guatemala|502|8|8;Guinea|224|9|9;Guinea-Bissau|245|7|7;Guyana|592|7|7;'
+    + 'Haiti|509|8|8;Honduras|504|8|8;Hong Kong|852|8|8;Hungary|36|8|9;Iceland|354|7|7;Indonesia|62|8|12;Iran|98|10|10;Iraq|964|8|10;Ireland|353|7|9;Israel|972|8|9;Italy|39|6|11;Jamaica|1|10|10;Japan|81|9|10;Jordan|962|8|9;'
+    + 'Kazakhstan|7|10|10;Kenya|254|9|9;Kiribati|686|5|8;Kosovo|383|8|9;Kuwait|965|8|8;Kyrgyzstan|996|9|9;Laos|856|8|10;Latvia|371|8|8;Lebanon|961|7|8;Lesotho|266|8|8;Liberia|231|7|9;Libya|218|9|10;Liechtenstein|423|7|9;Lithuania|370|8|8;Luxembourg|352|6|11;'
+    + 'Macao|853|8|8;Madagascar|261|9|10;Malawi|265|7|9;Malaysia|60|8|10;Maldives|960|7|7;Mali|223|8|8;Malta|356|8|8;Marshall Islands|692|7|7;Mauritania|222|8|8;Mauritius|230|7|8;Mexico|52|10|10;Micronesia|691|7|7;Moldova|373|8|8;Monaco|377|8|9;Mongolia|976|8|8;Montenegro|382|8|9;Morocco|212|9|9;Mozambique|258|8|9;Myanmar|95|7|10;'
+    + 'Namibia|264|7|10;Nauru|674|7|7;Nepal|977|8|10;Netherlands|31|9|9;New Caledonia|687|6|6;New Zealand|64|8|10;Nicaragua|505|8|8;Niger|227|8|8;Nigeria|234|8|10;North Korea|850|8|10;North Macedonia|389|8|8;Norway|47|8|8;Oman|968|8|8;'
+    + 'Pakistan|92|9|10;Palau|680|7|7;Palestine|970|8|9;Panama|507|7|8;Papua New Guinea|675|7|8;Paraguay|595|9|9;Peru|51|8|9;Philippines|63|8|10;Poland|48|9|9;Portugal|351|9|9;Puerto Rico|1|10|10;Qatar|974|8|8;Réunion|262|9|9;Romania|40|9|9;Russia|7|10|10;Rwanda|250|9|9;'
+    + 'Saint Kitts and Nevis|1|10|10;Saint Lucia|1|10|10;Saint Vincent and the Grenadines|1|10|10;Samoa|685|5|7;San Marino|378|6|10;São Tomé and Príncipe|239|7|7;Saudi Arabia|966|8|9;Senegal|221|9|9;Serbia|381|8|10;Seychelles|248|7|7;Sierra Leone|232|8|8;Singapore|65|8|8;Slovakia|421|9|9;Slovenia|386|8|8;Solomon Islands|677|5|7;Somalia|252|7|9;South Africa|27|9|9;South Korea|82|9|10;South Sudan|211|9|9;Spain|34|9|9;Sri Lanka|94|9|9;Sudan|249|9|9;Suriname|597|6|7;Sweden|46|7|13;Switzerland|41|9|9;Syria|963|8|9;'
+    + 'Taiwan|886|8|9;Tajikistan|992|9|9;Tanzania|255|9|9;Thailand|66|8|9;Timor-Leste|670|7|8;Togo|228|8|8;Tonga|676|5|7;Trinidad and Tobago|1|10|10;Tunisia|216|8|8;Turkey|90|10|10;Turkmenistan|993|8|8;Tuvalu|688|5|6;Uganda|256|9|9;Ukraine|380|9|9;United Arab Emirates|971|8|9;United Kingdom|44|9|10;United States|1|10|10;Uruguay|598|8|8;Uzbekistan|998|9|9;Vanuatu|678|5|7;Venezuela|58|10|10;Vietnam|84|9|10;Yemen|967|7|9;Zambia|260|9|9;Zimbabwe|263|5|10').split(';').map(function (r) {
+    var p = r.split('|'); return { n: p[0], d: p[1], min: +p[2], max: +p[3] };
+  });
+  var S = {
+    'India': 'Andaman and Nicobar Islands,Andhra Pradesh,Arunachal Pradesh,Assam,Bihar,Chandigarh,Chhattisgarh,Dadra and Nagar Haveli and Daman and Diu,Delhi,Goa,Gujarat,Haryana,Himachal Pradesh,Jammu and Kashmir,Jharkhand,Karnataka,Kerala,Ladakh,Lakshadweep,Madhya Pradesh,Maharashtra,Manipur,Meghalaya,Mizoram,Nagaland,Odisha,Puducherry,Punjab,Rajasthan,Sikkim,Tamil Nadu,Telangana,Tripura,Uttar Pradesh,Uttarakhand,West Bengal',
+    'United States': 'Alabama,Alaska,Arizona,Arkansas,California,Colorado,Connecticut,Delaware,District of Columbia,Florida,Georgia,Hawaii,Idaho,Illinois,Indiana,Iowa,Kansas,Kentucky,Louisiana,Maine,Maryland,Massachusetts,Michigan,Minnesota,Mississippi,Missouri,Montana,Nebraska,Nevada,New Hampshire,New Jersey,New Mexico,New York,North Carolina,North Dakota,Ohio,Oklahoma,Oregon,Pennsylvania,Rhode Island,South Carolina,South Dakota,Tennessee,Texas,Utah,Vermont,Virginia,Washington,West Virginia,Wisconsin,Wyoming',
+    'Canada': 'Alberta,British Columbia,Manitoba,New Brunswick,Newfoundland and Labrador,Northwest Territories,Nova Scotia,Nunavut,Ontario,Prince Edward Island,Quebec,Saskatchewan,Yukon',
+    'Australia': 'Australian Capital Territory,New South Wales,Northern Territory,Queensland,South Australia,Tasmania,Victoria,Western Australia',
+    'United Kingdom': 'England,Northern Ireland,Scotland,Wales',
+    'United Arab Emirates': 'Abu Dhabi,Ajman,Dubai,Fujairah,Ras Al Khaimah,Sharjah,Umm Al Quwain',
+    'Pakistan': 'Azad Kashmir,Balochistan,Gilgit-Baltistan,Islamabad Capital Territory,Khyber Pakhtunkhwa,Punjab,Sindh',
+    'Bangladesh': 'Barishal,Chattogram,Dhaka,Khulna,Mymensingh,Rajshahi,Rangpur,Sylhet',
+    'Sri Lanka': 'Central,Eastern,North Central,North Western,Northern,Sabaragamuwa,Southern,Uva,Western',
+    'Nepal': 'Bagmati,Gandaki,Karnali,Koshi,Lumbini,Madhesh,Sudurpashchim',
+    'Malaysia': 'Johor,Kedah,Kelantan,Kuala Lumpur,Labuan,Melaka,Negeri Sembilan,Pahang,Penang,Perak,Perlis,Putrajaya,Sabah,Sarawak,Selangor,Terengganu',
+    'Germany': 'Baden-Württemberg,Bavaria,Berlin,Brandenburg,Bremen,Hamburg,Hesse,Lower Saxony,Mecklenburg-Vorpommern,North Rhine-Westphalia,Rhineland-Palatinate,Saarland,Saxony,Saxony-Anhalt,Schleswig-Holstein,Thuringia'
+  };
+  Object.keys(S).forEach(function (k) { S[k] = S[k].split(','); });
+  return { countries: C, states: S };
+})();
+</script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" integrity="sha384-AQ3POAMqIhwS81FrUH95ekxqBZHeP5tG2JfEL3+7GuTtfRLWnrRh32UxwzM+//A9" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js" integrity="sha384-TnlRYaR4JYz/lpaGuaiU61PjNberSA4vjLjtF+oRC/IkohkJqnWxw5EmDSOt1vA1" crossorigin="anonymous"></script>
 <script>
@@ -899,6 +944,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   function open(forBuy) { pendingBuy = !!forBuy; say(''); $('aSetup').hidden = !!configured; modal.classList.add('open'); }
   function close() { modal.classList.remove('open'); }
   function render() {
+    $('aEmail').value = ''; $('aPass').value = '';          // never keep the last person's email / password on screen
     if (user) {
       bar.innerHTML = '<span class="who"></span><button id="profileBtn">My profile</button><button id="logoutBtn">Log out</button>';
       $('profileBtn').onclick = function () { if (window.kuttuProfile) window.kuttuProfile.open(); };
@@ -1079,7 +1125,60 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   });
 
   /* ---------- 1b. Customer profile (shown after sign-in; also "My profile") ---------- */
-  var pm = $('profileModal'), pAfter = null, pOld = null, pAsked = false, pLoaded = false;
+  var pm = $('profileModal'), pAfter = null, pOld = null, pAsked = false, pLoaded = false, dialTouched = false;
+  /* ---------- Country, state and mobile-number rules (data: window.KUTTU_GEO) ---------- */
+  var GEO = window.KUTTU_GEO || { countries: [], states: {} };
+  var CTRY = GEO.countries.slice().sort(function (a, b) { return a.n === 'India' ? -1 : b.n === 'India' ? 1 : a.n.localeCompare(b.n); });
+  var CBY = {}; CTRY.forEach(function (c) { CBY[c.n] = c; });
+  function opt(v, t) { var o = document.createElement('option'); o.value = v; o.textContent = t == null ? v : t; return o; }
+  (function fillCountryLists() {
+    var cs = $('prCountry'), ds = $('prDial');
+    cs.appendChild(opt('', 'Select country'));
+    CTRY.forEach(function (c) { cs.appendChild(opt(c.n)); ds.appendChild(opt(c.n, c.n + ' (+' + c.d + ')')); });
+  })();
+  function phoneRule() { return CBY[$('prDial').value] || CBY['India']; }
+  function digitsText(c) { return c.min === c.max ? c.min + ' digits' : c.min + ' to ' + c.max + ' digits'; }
+  function updatePhoneHint() {
+    var c = phoneRule(), inp = $('prPhone');
+    inp.maxLength = c.max;
+    $('prPhoneHint').textContent = c.n + ' (+' + c.d + '): ' + digitsText(c) + ', without the country code.';
+    inp.value = inp.value.replace(/\D/g, '').slice(0, c.max);
+  }
+  function stateList() { return GEO.states[$('prCountry').value] || null; }
+  function refreshStates(keep) {
+    var list = stateList(), sel = $('prStateSel'), txt = $('prState');
+    sel.textContent = '';
+    if (list) {
+      sel.appendChild(opt('', 'Select state / province'));
+      list.forEach(function (n) { sel.appendChild(opt(n)); });
+      sel.hidden = false; txt.hidden = true;
+      if (keep) { if (list.indexOf(keep) < 0) sel.appendChild(opt(keep)); sel.value = keep; }
+    } else {
+      sel.hidden = true; txt.hidden = false; txt.value = keep || '';
+    }
+  }
+  function stateValue() { return stateList() ? $('prStateSel').value : $('prState').value.trim(); }
+  function setCountry(name) {
+    var cs = $('prCountry');
+    if (name && !CBY[name]) cs.appendChild(opt(name));          // an older profile may hold a name that is not in the list
+    cs.value = name || '';
+  }
+  function onCountryChange() {
+    refreshStates('');
+    var c = CBY[$('prCountry').value];
+    if (c && !dialTouched) $('prDial').value = c.n;
+    updatePhoneHint();
+  }
+  function splitPhone(raw, country) {        // "+91 9866079246" or an older plain "9866079246" -> country name + digits
+    var t = String(raw || '').trim(), m = /^\+(\d{1,4})[\s-]*([\d\s-]+)$/.exec(t);
+    if (!m) return { c: country && CBY[country] ? country : 'India', n: t.replace(/\D/g, '') };
+    var hit = CTRY.filter(function (c) { return c.d === m[1]; });
+    var pick = hit.filter(function (c) { return c.n === country; })[0] || hit[0];
+    return { c: pick ? pick.n : 'India', n: m[2].replace(/\D/g, '') };
+  }
+  $('prCountry').addEventListener('change', onCountryChange);
+  $('prDial').addEventListener('change', function () { dialTouched = true; updatePhoneHint(); });
+  $('prPhone').addEventListener('input', function () { var c = phoneRule(); this.value = this.value.replace(/\D/g, '').slice(0, c.max); });
   var pSay = function (t, ok) { $('prOut').textContent = t || ''; $('prOut').className = 'msg' + (ok ? ' ok' : ''); };
   var pUser = function () { try { return firebase.auth().currentUser; } catch (e) { return null; } };
   function within(promise, ms) {     // a Firestore call that never answers (service not switched on) must not leave the window stuck
@@ -1092,6 +1191,9 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
     return within(needDb().then(function () { return db.collection('profiles').doc(u.uid).get(); }), 10000)
       .then(function (s) { pOld = s.exists ? s.data() : null; pLoaded = true; return pOld; });
   }
+  function complete(p) {            // a profile saved before the fields became required is treated as unfinished
+    return !!p && ['name', 'phone', 'email', 'shopName', 'shopType', 'city', 'state', 'pincode', 'country'].every(function (k) { return String(p[k] || '').trim(); });
+  }
   function closeProfile() { pm.classList.remove('open'); pAfter = null; }
   function openProfile(after, first) {
     var u = pUser(); if (!u) return;
@@ -1103,12 +1205,14 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
       : 'Keep your details up to date so we can reach you and support your shop.';
     var p = pOld || {};
     $('prName').value = p.name || u.displayName || '';
-    $('prPhone').value = p.phone || (u.phoneNumber || '').replace(/^\+91/, '');
+    var country = p.country || 'India', ph = splitPhone(p.phone || u.phoneNumber, country);
+    setCountry(country); dialTouched = ph.c !== country;
+    refreshStates(p.state || ''); $('prDial').value = ph.c; $('prPhone').value = ph.n; updatePhoneHint();
     $('prEmail').value = u.email || p.email || '';
     $('prEmail').readOnly = !!u.email;
     $('prShop').value = p.shopName || ''; $('prType').value = p.shopType || 'Boutique';
-    $('prCity').value = p.city || ''; $('prState').value = p.state || ''; $('prGst').value = p.gstin || '';
-    $('prPin').value = p.pincode || ''; $('prCountry').value = p.country || 'India';
+    $('prCity').value = p.city || ''; $('prGst').value = p.gstin || '';
+    $('prPin').value = p.pincode || '';
     $('prConsent').checked = !!p.consent; $('prGo').disabled = false;
     pm.classList.add('open');
     var buy = $('prBuy'); buy.hidden = true; buy.textContent = '';
@@ -1213,45 +1317,54 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   window.kuttuProfile = {
     open: function () {
       var u = pUser(); if (!u || !ready) return;
-      if (pLoaded) { openProfile(null, !pOld); return; }          // already fetched after sign-in: instant
+      if (pLoaded) { openProfile(null, !complete(pOld)); return; }          // already fetched after sign-in: instant
       pm.classList.add('open'); pSay(''); $('prSetup').hidden = !!ready;      // show the window at once, fill it in when ready
       $('prTitle').textContent = 'Your profile'; $('prIntro').textContent = 'Loading your profile\u2026'; $('prGo').disabled = true;
       var b = $('prBuy'); b.hidden = true; b.textContent = '';
-      getProfile(u).then(function () { openProfile(null, !pOld); })
+      getProfile(u).then(function () { openProfile(null, !complete(pOld)); })
         .catch(function () { openProfile(null, true); pSay('We could not load your saved details just now. You can fill the form in and save.'); });
     },
     ensure: function (next) {                    // used before paying: carry on only once a profile exists
       var u = pUser();
       if (!u || !ready) { next(); return; }
-      if (pLoaded) { if (pOld) { next(); } else { openProfile(next, true); } return; }
+      if (pLoaded) { if (complete(pOld)) { next(); } else { openProfile(next, true); } return; }
       getProfile(u).then(function (p) {
-        if (p) { next(); } else { openProfile(next, true); }
+        if (complete(p)) { next(); } else { openProfile(next, true); }
       }).catch(function () { next(); });         // never block paying because the profile could not be read
     }
   };
   window.addEventListener('kuttu-auth', function (e) {     // first sign-in: ask for the details once
-    if (!e.detail || !e.detail.signedIn) { pAsked = false; pOld = null; pLoaded = false; closeProfile(); return; }
+    if (!e.detail || !e.detail.signedIn) {
+      pAsked = false; pOld = null; pLoaded = false; closeProfile();
+      $('prForm').reset(); $('prPhone').value = ''; $('prState').value = ''; $('prStateSel').textContent = ''; $('prBuy').textContent = ''; $('prBuy').hidden = true; pSay('');
+      return;
+    }
     var u = pUser(); if (!u || !ready || pAsked) return;
     pAsked = true;          // fetched right after sign-in, so My profile opens instantly later
-    getProfile(u).then(function (p) { if (!p) openProfile(null, true); }).catch(function () {});
+    getProfile(u).then(function (p) { if (!complete(p)) openProfile(null, true); }).catch(function () {});
   });
   $('prClose').onclick = closeProfile; $('prPriv').onclick = closeProfile;
   pm.addEventListener('click', function (e) { if (e.target === pm) closeProfile(); });
   $('prForm').addEventListener('submit', function (e) {
     e.preventDefault(); pSay('');
     var u = pUser(); if (!u) return pSay('Please sign in again.');
-    var d = { name: $('prName').value.trim(), phone: $('prPhone').value.trim(), email: $('prEmail').value.trim(),
+    var pc = phoneRule(), digits = $('prPhone').value.replace(/\D/g, '');
+    var d = { name: $('prName').value.trim(), phone: '+' + pc.d + ' ' + digits, email: $('prEmail').value.trim(),
       shopName: $('prShop').value.trim(), shopType: $('prType').value, city: $('prCity').value.trim(),
-      state: $('prState').value.trim(), pincode: $('prPin').value.trim(), country: $('prCountry').value.trim(), gstin: $('prGst').value.trim().toUpperCase().replace(/\s+/g, ''), consent: true };
+      state: stateValue(), pincode: $('prPin').value.trim(), country: $('prCountry').value, gstin: $('prGst').value.trim().toUpperCase().replace(/\s+/g, ''), consent: true };
     if (d.name.length < 2) return pSay('Please enter your full name.');
-    if (d.phone.replace(/\D/g, '').length < 10) return pSay('Please enter a valid mobile number.');
-    if (d.email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) return pSay('Please enter a valid email.');
-    if (d.shopName.length < 2) return pSay('Please enter your shop or boutique name.');
-    if (d.city.length < 2) return pSay('Please enter your city or town.');
-    if (d.country.length < 2) return pSay('Please enter your country.');
-    if (/^india$/i.test(d.country) ? !/^[1-9][0-9]{5}$/.test(d.pincode) : !/^[A-Za-z0-9 -]{3,12}$/.test(d.pincode)) {
-      return pSay(/^india$/i.test(d.country) ? 'Please enter a 6-digit pincode.' : 'Please enter your postal code.');
+    if (digits.length < pc.min || digits.length > pc.max || (pc.n === 'India' && !/^[6-9]/.test(digits))) {
+      return pSay('Please enter a valid ' + pc.n + ' mobile number: ' + digitsText(pc) + ', without the country code' + (pc.n === 'India' ? ' (it starts with 6, 7, 8 or 9).' : '.'));
     }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) return pSay('Please enter a valid email.');
+    if (d.shopName.length < 2) return pSay('Please enter your shop or boutique name.');
+    if (!d.shopType) return pSay('Please choose the type of shop.');
+    if (!d.country) return pSay('Please choose your country.');
+    if (d.state.length < 2) return pSay(stateList() ? 'Please choose your state or province.' : 'Please enter your state, province or region.');
+    if (d.city.length < 2) return pSay('Please enter your city or town.');
+    var pinOk = d.country === 'India' ? /^[1-9][0-9]{5}$/.test(d.pincode)
+      : d.country === 'United States' ? /^[0-9]{5}(-[0-9]{4})?$/.test(d.pincode) : /^[A-Za-z0-9][A-Za-z0-9 -]{1,10}[A-Za-z0-9]$/.test(d.pincode);
+    if (!pinOk) return pSay(d.country === 'India' ? 'Please enter a 6-digit pincode.' : d.country === 'United States' ? 'Please enter a 5-digit ZIP code.' : 'Please enter your postal code.');
     if (d.gstin && !/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(d.gstin)) return pSay('That GST number does not look right (15 characters), or leave it blank.');
     if (!$('prConsent').checked) return pSay('Please tick the box to agree.');
     if (!ready) return pSay('Profiles are not switched on yet.');
@@ -1366,6 +1479,45 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
     });
   });
   window.addEventListener('hashchange', route); route();
+})();
+</script>
+<div class="modal" id="mailModal" role="dialog" aria-modal="true" aria-labelledby="mailTitle">
+ <div class="mbox">
+  <button class="x" type="button" aria-label="Close" id="mailX">&times;</button>
+  <h3 id="mailTitle">Email Kuttu</h3>
+  <p style="color:var(--mute);margin:0 0 14px">Write to <b id="mailAddr">enquiry@kuttu.org</b>. Pick whichever works on your computer.</p>
+  <div style="display:grid;gap:10px">
+   <a class="btn" id="mailApp" href="mailto:enquiry@kuttu.org" style="text-align:center">Open my email app</a>
+   <a class="btn ghost" id="mailGmail" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=enquiry@kuttu.org" target="_blank" rel="noopener" style="text-align:center">Write in Gmail</a>
+   <button class="btn ghost" type="button" id="mailCopy">Copy the address</button>
+  </div>
+  <p id="mailMsg" style="margin:12px 0 0;color:var(--teal);font-size:.85rem;min-height:1.2em" aria-live="polite"></p>
+ </div>
+</div>
+<script>
+(function () {
+  var m = document.getElementById('mailModal'); if (!m) return;
+  var addr = 'enquiry@kuttu.org', msg = document.getElementById('mailMsg');
+  function open() { msg.textContent = ''; m.classList.add('open'); }
+  function close() { m.classList.remove('open'); }
+  [].forEach.call(document.querySelectorAll('a[data-mail]'), function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); open(); });
+  });
+  document.getElementById('mailX').addEventListener('click', close);
+  m.addEventListener('click', function (e) { if (e.target === m) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  document.getElementById('mailCopy').addEventListener('click', function () {
+    function ok() { msg.textContent = 'Copied: ' + addr; }
+    function fail() {
+      var t = document.createElement('textarea'); t.value = addr; t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      var done = false; try { done = document.execCommand('copy'); } catch (x) {}
+      document.body.removeChild(t);
+      if (done) ok(); else msg.textContent = 'Please copy it by hand: ' + addr;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(addr).then(ok, fail);
+    else fail();
+  });
 })();
 </script>
 </body>
