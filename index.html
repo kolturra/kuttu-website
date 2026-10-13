@@ -686,12 +686,12 @@ footer a{color:var(--gold-l)}
  <p class="lead" style="margin-inline:auto">Kuttu is a small team making software boutiques and tailoring shops use every day. We mostly look for interns, and our roles are usually part-time, so students and early-career applicants are very welcome. If you like practical problems and seeing your work used at a counter, we'd like to hear from you.</p>
  <p style="display:inline-block;margin:22px auto 0;background:var(--gold-l);color:var(--teal-d);font-weight:700;padding:8px 18px;border-radius:999px">Interns preferred · Part-time roles welcome</p>
  <div class="jobs">
-  <div class="job"><span class="meta">Engineering · Hyderabad</span><h3>Python Desktop Developer</h3><p>Work on the Kuttu suite: ledgers, billing and stitching modules, GST bills and reports.</p><span class="mailto">Send email to enquiry@kuttu.org</span></div>
-  <div class="job"><span class="meta">Design · Hyderabad</span><h3>Fashion Designer</h3><p>Advise on garment types, measurements and style options (necklines, sleeves, linings and more) so Kuttu matches how boutiques and tailors really work.</p><span class="mailto">Send email to enquiry@kuttu.org</span></div>
-  <div class="job"><span class="meta">Design · Intern · Part-time</span><h3>Fashion Design Intern</h3><p>Great for fashion students: help test measurement forms and cutting slips with real garment patterns, and suggest improvements.</p><span class="mailto">Send email to enquiry@kuttu.org</span></div>
-  <div class="job"><span class="meta">Customer success · Hyderabad</span><h3>Onboarding &amp; Support Executive</h3><p>Help shop owners install Kuttu, move their stock and orders in, and get comfortable using it.</p><span class="mailto">Send email to enquiry@kuttu.org</span></div>
-  <div class="job"><span class="meta">Sales · Hyderabad</span><h3>Boutique Sales Associate</h3><p>Meet boutiques and tailoring shops, run demos, and explain how Kuttu fits their work.</p><span class="mailto">Send email to enquiry@kuttu.org</span></div>
-  <div class="job"><span class="meta">Tailoring · Hyderabad</span><h3>Cutting Master and Tailors</h3><p>We are hiring skilled cutting masters and tailors for blouses, churidars, kurtas and other garments. Tell us your experience and the garments you are best at.</p><span class="mailto">Send email to enquiry@kuttu.org</span></div>
+  <div class="job"><span class="meta">Engineering · Hyderabad</span><h3>Python Desktop Developer</h3><p>Work on the Kuttu suite: ledgers, billing and stitching modules, GST bills and reports.</p><span class="mailto">Call or WhatsApp <a href="tel:+919866079246">+91 98660 79246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
+  <div class="job"><span class="meta">Design · Hyderabad</span><h3>Fashion Designer</h3><p>Advise on garment types, measurements and style options (necklines, sleeves, linings and more) so Kuttu matches how boutiques and tailors really work.</p><span class="mailto">Call or WhatsApp <a href="tel:+919866079246">+91 98660 79246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
+  <div class="job"><span class="meta">Design · Intern · Part-time</span><h3>Fashion Design Intern</h3><p>Great for fashion students: help test measurement forms and cutting slips with real garment patterns, and suggest improvements.</p><span class="mailto">Call or WhatsApp <a href="tel:+919866079246">+91 98660 79246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
+  <div class="job"><span class="meta">Customer success · Hyderabad</span><h3>Onboarding &amp; Support Executive</h3><p>Help shop owners install Kuttu, move their stock and orders in, and get comfortable using it.</p><span class="mailto">Call or WhatsApp <a href="tel:+919866079246">+91 98660 79246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
+  <div class="job"><span class="meta">Sales · Hyderabad</span><h3>Boutique Sales Associate</h3><p>Meet boutiques and tailoring shops, run demos, and explain how Kuttu fits their work.</p><span class="mailto">Call or WhatsApp <a href="tel:+919866079246">+91 98660 79246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
+  <div class="job"><span class="meta">Tailoring · Hyderabad</span><h3>Cutting Master and Tailors</h3><p>We are hiring skilled cutting masters and tailors for blouses, churidars, kurtas and other garments. Tell us your experience and the garments you are best at.</p><span class="mailto">Call or WhatsApp <a href="tel:+919866079246">+91 98660 79246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
  </div>
  <p style="margin:26px 0 0;color:var(--mute)">Don't see your role? Send a general application with your resume to enquiry@kuttu.org, or message us on <a href="https://wa.me/919866079246?text=Hi%20Kuttu%2C%20I%20have%20a%20question%20about%20careers" target="_blank" rel="noopener">WhatsApp</a>.</p></div></section>
 
@@ -1567,6 +1567,13 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
 </script>
 <script>
 (function () {
+  /* Phone / tablet menu: close it after a link is tapped, when the page behind it is tapped, or on Escape. */
+  var nt = document.getElementById('nt');
+  function closeMenu() { if (nt) nt.checked = false; }
+  [].slice.call(document.querySelectorAll('nav a')).forEach(function (a) { a.addEventListener('click', closeMenu); });
+  document.addEventListener('click', function (e) { if (nt && nt.checked && !e.target.closest('header')) closeMenu(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('hashchange', closeMenu);
   var links = [].slice.call(document.querySelectorAll('nav a[href^="#"]')), map = {};
   links.forEach(function (a) { var el = document.getElementById(a.getAttribute('href').slice(1)); if (el) map[el.id] = a; });
   if (!('IntersectionObserver' in window)) return;
