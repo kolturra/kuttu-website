@@ -222,6 +222,8 @@ footer .social span{display:none}
 .mbox textarea{min-height:90px;resize:vertical}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
 .phrow{display:flex;gap:8px}.phrow select{flex:0 0 46%;min-width:0;width:auto}.phrow input{flex:1;min-width:0}
+.vnote{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:12px;align-items:flex-start;background:#fff;border:2px solid var(--teal);border-radius:12px;padding:12px 16px;box-shadow:0 12px 30px -10px rgba(0,0,0,.35);width:max-content;max-width:min(92vw,520px);box-sizing:border-box;font-size:.9rem;color:var(--ink)}
+.vnote[hidden]{display:none}.vnote button{background:none;border:0;font-size:1.3rem;line-height:1;cursor:pointer;color:var(--mute)}
 .rq{color:var(--red)}.hint{display:block;color:var(--mute);font-size:.76rem;margin-top:4px;min-height:1em}
 @media(max-width:560px){.frow{grid-template-columns:1fr}}
 .drop{border:2px dashed var(--line);border-radius:12px;padding:14px;background:#faf6ec;margin-top:6px}
@@ -271,6 +273,7 @@ footer a{color:var(--gold-l)}
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="mk" viewBox="20 10 200 210"><circle cx="120" cy="115" r="95" fill="#0d5f5f"/><path d="M90,90 Q120,55 165,45" fill="none" stroke="#f0d78a" stroke-width="5" stroke-linecap="round"/><path d="M90,140 Q120,175 165,185" fill="none" stroke="#f0d78a" stroke-width="5" stroke-linecap="round"/><line x1="90" y1="35" x2="90" y2="195" stroke="#a87d12" stroke-width="9" stroke-linecap="round"/><path d="M90,50 C68,75 102,90 78,115 C54,140 102,155 90,190" fill="none" stroke="#f0d78a" stroke-width="3" stroke-linecap="round"/><ellipse cx="90" cy="42" rx="7" ry="9" fill="#0d5f5f" stroke="#a87d12" stroke-width="3"/><circle cx="90" cy="50" r="6" fill="#8c1c3a"/></symbol></svg>
 
+<div class="vnote" id="vnote" role="status" hidden><span></span><button type="button" id="vnoteX" aria-label="Close">&times;</button></div>
 <header>
  <div class="wrap bar">
   <a class="brand" href="#top"><svg role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>kuttu</a>
@@ -956,7 +959,11 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
       'auth/weak-password': 'Password must be at least 6 characters.', 'auth/invalid-email': 'Please enter a valid email.',
       'auth/popup-closed-by-user': 'Sign-in was cancelled.', 'auth/invalid-phone-number': 'Enter a valid mobile number.',
       'auth/invalid-verification-code': 'That OTP is not correct.', 'auth/too-many-requests': 'Too many tries. Please wait a bit.',
-      'auth/account-exists-with-different-credential': 'That email is already used with another sign-in method.' };
+      'auth/account-exists-with-different-credential': 'That email is already used with another sign-in method.',
+      'auth/missing-email': 'Please type your email address.', 'auth/missing-password': 'Please type a password (6 or more characters).',
+      'auth/network-request-failed': 'No internet connection. Please try again.', 'auth/user-disabled': 'This account has been disabled. Please contact us.',
+      'auth/user-not-found': 'Wrong email or password.', 'auth/wrong-password': 'Wrong email or password.',
+      'auth/operation-not-allowed': 'This sign-in method is not switched on yet. Please message us on WhatsApp.' };
     return m[e.code] || (e.message || 'Something went wrong.');
   };
   function open(forBuy) { pendingBuy = !!forBuy; say(''); $('aSetup').hidden = !!configured; modal.classList.add('open'); }
@@ -1018,7 +1025,25 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   });
   var creds = function () { return [$('aEmail').value.trim(), $('aPass').value]; };
   $('aSignin').onclick = function () { var c = creds(); say(''); auth.signInWithEmailAndPassword(c[0], c[1]).catch(function (e) { say(nice(e)); }); };
-  $('aSignup').onclick = function () { var c = creds(); say(''); auth.createUserWithEmailAndPassword(c[0], c[1]).catch(function (e) { say(nice(e)); }); };
+  var noteTimer = null;
+  function showNote(text) {       // a small message at the top of the page; the sign-in window has already closed by then
+    var n = $('vnote'); if (!n) return;
+    n.querySelector('span').textContent = text; n.hidden = false;
+    clearTimeout(noteTimer); noteTimer = setTimeout(function () { n.hidden = true; }, 20000);
+  }
+  $('vnoteX').onclick = function () { $('vnote').hidden = true; };
+  window.kuttuNote = showNote;
+  $('aSignup').onclick = function () {
+    var c = creds(); say('');
+    auth.createUserWithEmailAndPassword(c[0], c[1]).then(function (cred) {
+      var u = cred.user;      // the account is signed in now (this window closes); email it a verification link
+      return u.sendEmailVerification().then(function () {
+        showNote('Account created. We emailed a verification link to ' + u.email + '. Open it and click the link (check the spam folder too).');
+      }, function () {
+        showNote('Account created, but we could not send the verification email. Open My profile and use Send verification email.');
+      });
+    }).catch(function (e) { say(nice(e)); });
+  };
   $('aReset').onclick = function () {
     var em = $('aEmail').value.trim(); if (!em) { say('Type your email above first.'); return; }
     auth.sendPasswordResetEmail(em).then(function () { say('Password reset email sent.', true); }).catch(function (e) { say(nice(e)); });
