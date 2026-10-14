@@ -349,14 +349,14 @@ footer a{color:var(--gold-l)}
  <div class="group"><h3>Custom work, billing &amp; people</h3>
  <div class="grid">
   <div class="card"><span class="tag">CUSTOM</span><div class="code g">SM</div><h3>Stitching Measurement</h3><p>Customer orders with full measurements for blouse (and blouse workings), kameez, salwar, churidar, kurta, frocks, lehanga choli, ghagra choli, top and bottom sets, kids' wear, uniform shirt and skirt — plus saree fall, pico, blouse cutting and border services, and alterations. Multi-garment orders (even two of the same garment), merge orders, cutting slips, balance tracking.</p></div>
-  <div class="card"><span class="tag">STAFF</span><div class="code g">ET</div><h3>Employee Tracker</h3><p>Daily count of garments cut or stitched by each Cutting Master and Tailor, with day and date-range summaries.</p></div>
+  <div class="card"><span class="tag">STAFF</span><div class="code g">ET</div><h3>Employee Tracker</h3><p>Daily count of garments cut or stitched by each Cutting Master and Tailor, with day and date-range summaries, plus a staff attendance register (present, half day, absent, in and out times).</p></div>
   <div class="card"><span class="tag">BILLING</span><div class="code g">PB</div><h3>Print Bill</h3><p>Any-item invoice for one-offs and services — per-item GST, discount, advances, WhatsApp sharing. Barcode-matched items also reduce stock.</p></div>
  </div></div>
 
  <div class="group"><h3>Shop expenses &amp; pay</h3>
  <div class="grid">
   <div class="card"><span class="tag">EXPENSES</span><div class="code g">MP</div><h3>Stationery &amp; Misc Purchases</h3><p>Record everyday buys that aren't stock — stationery, tailoring supplies, packaging, running costs — by category, with payment mode and a spent-by-category total.</p></div>
-  <div class="card"><span class="tag">PAY &amp; RENT</span><div class="code g">SR</div><h3>Salary &amp; Rent</h3><p>Pay staff monthly, weekly or daily with leave deducted per day and a printable salary slip, and track each month's shop rent as Paid, Part paid or Due.</p></div>
+  <div class="card"><span class="tag">PAY &amp; RENT</span><div class="code g">SR</div><h3>Salary &amp; Rent</h3><p>Pay staff monthly, weekly or daily with leave deducted per day, a bonus where you give one, and a printable salary slip, and track each month's shop rent as Paid, Part paid or Due.</p></div>
  </div></div>
 
  <div class="group"><h3>Across everything</h3>
@@ -375,6 +375,7 @@ footer a{color:var(--gold-l)}
    <li>How much have we sold, and what is our stock worth?<span>Sales revenue and inventory value, side by side.</span></li>
    <li>Who still owes us money?<span>Total payments received and total balance due, across the sale apps, Print Bill and Stitching.</span></li>
    <li>How is each month going?<span>Every application in one table, month by month with a total row, newest month first.</span></li>
+   <li>Who are your best customers?<span>Top 10 customers by visits and by revenue, in Home, Stitching and Print Bill. One phone number counts as one customer, even across different applications.</span></li>
    <li>How much stitching is still waiting to be delivered?<span>Stitching orders and the billed amount for each delivery status, most orders first.</span></li>
    <li>Which vendors and items matter most?<span>Top vendors by stock, top items by amount, and best sellers by barcode.</span></li>
    <li>Which product line earns the most?<span>Astar, saree, readymade and stitching revenue, with the sales app and Print Bill combined, before GST.</span></li>
@@ -479,7 +480,7 @@ footer a{color:var(--gold-l)}
    <li>Lining metres used can reduce real Astar Ledger stock through the item's barcode</li>
    <li>Saree fall, pico, blouse cutting and border work as a service order — choose any combination, and the border fabric type when there is one</li>
    <li>Blouse workings are ordered on their own: aari, maggam, embroidery, zari, stone, beads, cut work or tassels, in any combination, alongside the blouse itself</li>
-   <li>Alterations are a garment of their own: pick what is being altered (blouse, salwar, kurta, saree and more) from a list, with no body measurements needed</li>
+   <li>Alterations are a garment of their own: pick what is being altered (blouse, salwar, kurta, saree and more) from a list, with no body measurements needed, and note the order it was first made on</li>
    <li>Give each garment its own name, such as "Red wedding blouse", so a repeat order is easy to tell apart</li>
    <li>Add a Trial Date between the order date and delivery date for fittings</li>
    <li>One order can hold both men's and women's garments for the same family — each garment keeps its own gender, and the bill and chit list them together</li>
@@ -575,6 +576,11 @@ footer a{color:var(--gold-l)}
   <h2>Know who cut and stitched what.</h2>
   <p class="lead">At day end, enter how many garments each cutting master or tailor completed. See each person's days worked, total garments and daily average for any period — payday becomes arithmetic, not an argument.</p>
   <p class="lead">Staff names are shared with Stitching Measurement and Salary &amp; Rent, so you type each name once.</p>
+  <ul class="chk">
+   <li>A staff attendance register: mark Present, Half day or Absent, with In and Out times and a note</li>
+   <li>A date-wise attendance table, and a summary of days worked and days absent for any period</li>
+   <li>Salary &amp; Rent picks up each person's days worked or absent from the register</li>
+  </ul>
  </div>
  <div class="win">
   <div class="win-h"><i></i><i></i><i></i><b>Daily Tracker</b></div>
@@ -602,6 +608,8 @@ footer a{color:var(--gold-l)}
   <p class="lead">Kuttu works out each person's pay for you and prints a salary slip. It warns you before you pay the same person twice for one period.</p>
   <ul class="chk">
    <li>Staff paid monthly, weekly or daily, with leave taken into account</li>
+   <li>Daily staff: the shift length (8 hours by default) turns the hours they worked into days worked</li>
+   <li>A bonus is recorded on its own, apart from overtime and other additions, and shown on the slip</li>
    <li>Salary slip to print or send to the staff member on WhatsApp</li>
    <li>Rent per property: landlord, due day, deposit held, and Paid / Part paid / Due each month</li>
    <li>Landlord's receipt number and payment mode saved with every payment</li>
