@@ -657,18 +657,19 @@ footer a{color:var(--gold-l)}
   <div class="role"><h3>Kuttu Application — full suite</h3>
    <div class="price"><s style="font-size:1.5rem;color:var(--mute);font-weight:500">₹24,999</s> ₹999 <span class="off">96% off</span></div><p style="color:var(--mute)">One-year license · all eleven modules</p>
    <p style="margin:0 0 14px;font-weight:700;color:var(--teal-d);font-size:.92rem">📈 Includes Consolidated Analytics — reports and charts for the whole shop. <a href="#analytics">See how</a></p>
-   <a class="btn" id="buyNow" href="#" data-pay="PAYMENT_LINK_URL_HERE">Buy now</a>
-   <span style="display:block;margin-top:8px;font-size:.82rem;color:var(--mute)">You'll sign in or create a free account first.</span>
-   <span class="ph">↳ Payment link not yet connected</span>
+   <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <a class="btn" href="https://wa.me/917207629246?text=Hi%20Kuttu%2C%20I%27d%20like%20to%20buy%20the%20Kuttu%20Application" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    <a class="btn ghost" href="tel:+917207629246">Call +91 72076 29246</a></div>
+   <span style="display:block;margin-top:8px;font-size:.82rem;color:var(--mute)">To buy, message or call us. We take your details, confirm the payment and send your download link and license key.</span>
+   <!-- Kept for when online payment is connected (the sign-in script looks for it): hidden for now. -->
+   <a id="buyNow" href="#" data-pay="PAYMENT_LINK_URL_HERE" style="display:none">Buy now</a>
    <p style="margin:14px 0 0;font-size:.9rem">Licensed for <b>one PC for one year</b> — activated with a key tied to that PC. Bug-fix updates are free for license holders. <a href="#faq">Details</a></p></div>
   <div class="role s"><h3>Already purchased?</h3>
-   <p style="color:var(--mute)">Your private download link is <b>emailed to you right after payment</b> (Windows 10 / 11, 226 MB). Check your spam folder too. It expires after 48 hours.</p>
-   <form class="relink" novalidate>
-    <label for="rlEmail1" style="font-weight:700;font-size:.86rem">Lost it or expired? Enter the email you paid with:</label>
-    <input type="email" id="rlEmail1" placeholder="you@example.com" autocomplete="email" style="width:100%;padding:11px 12px;margin:8px 0;border:1px solid var(--line);border-radius:10px;font:inherit">
-    <button type="submit" class="btn ghost" style="cursor:pointer">Email me a new link</button>
-    <div class="msg" role="status"></div>
-   </form></div>
+   <p style="color:var(--mute)">We send you a <b>private download link</b> for the installer (Windows 10 / 11, 226 MB) and a license key made for your PC. Check your spam folder too.</p>
+   <p style="margin:0 0 12px;font-weight:600">Lost your link or need it again? Message or call us and we will send it.</p>
+   <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <a class="btn ghost" href="https://wa.me/917207629246?text=Hi%20Kuttu%2C%20I%20need%20my%20download%20link%20again" target="_blank" rel="noopener">WhatsApp us</a>
+    <a class="btn ghost" href="tel:+917207629246">Call us</a></div></div>
  </div>
  <div class="card" style="margin-top:20px"><h3>System requirements</h3>
   <p style="margin-top:8px"><b>Windows 10 or 11 (64-bit)</b> · about <b>1 GB</b> free disk space · installs for your Windows user, <b>no administrator rights needed</b> · works without internet.<br>
@@ -681,7 +682,7 @@ footer a{color:var(--gold-l)}
  <details><summary>Do I need internet?</summary><p>No. Kuttu runs fully offline. Internet is only used if you choose to share a bill through WhatsApp.</p></details>
  <details><summary>Can I use it for only sarees, or only stitching?</summary><p>Yes. Each module opens on its own from Home, so use only the ones your shop needs.</p></details>
  <details><summary>How many PCs does one license cover?</summary><p>One license covers one PC. If you want to run Kuttu on another computer, that needs its own license.</p></details>
- <details><summary>What happens right after I pay?</summary><p>Right after payment we email you a private download link that works for 48 hours (check your spam folder). If it expires, request a new one on this page with the same email you paid with. After installing, Kuttu asks you to activate it — see the next question.</p></details>
+ <details><summary>How do I buy, and what happens after I pay?</summary><p>Message us on WhatsApp or call <a href="tel:+917207629246">+91 72076 29246</a>. We take your shop details, confirm the payment and send you a private download link for the installer. If you lose the link, contact us and we will send it again. After installing, Kuttu asks you to activate it — see the next question.</p></details>
  <details><summary>How does activation work?</summary><p>When you first open Kuttu it shows your PC's Machine ID with Email and WhatsApp buttons. Send it to us, and we reply with a license key made for that PC. Paste the key in and Kuttu is activated. A key only works on the PC it was made for, and your license runs for one year from the day we issue it.</p></details>
  <details><summary>What happens after one year? How do I renew?</summary><p>About 30 days before your license ends, Kuttu shows a reminder on the Home screen with the date and the days left. To renew, send us your Machine ID again (it's in Home &rarr; System Settings), and we reply with a new key. In System Settings, click <b>Renew License</b>, paste the key and Activate — your data and settings stay exactly as they are. If a license ends before you renew, Kuttu asks for a new key when it opens; your records are never deleted or locked away. For the renewal price, <a href="https://wa.me/917207629246?text=Hi%20Kuttu%2C%20I%27d%20like%20to%20know%20the%20renewal%20price" target="_blank" rel="noopener">contact us on WhatsApp</a> or <a href="#contact">use the contact section</a>.</p></details>
  <details><summary>Can my staff use it in Hindi or Telugu?</summary><p>Yes. Every screen can be switched between English, हिन्दी and తెలుగు from the Home screen. Bills and messages sent to your customers stay in English.</p></details>
@@ -697,8 +698,10 @@ footer a{color:var(--gold-l)}
  <!-- AD SLOT 2 (above careers, 970x90 banner): replace everything inside .ad with your banner, e.g.
       <a href="ADVERTISER_URL" target="_blank" rel="sponsored noopener"><img src="AD_IMAGE_URL" alt="Advertiser name" width="970" height="90"></a>
       or paste an ad-network script. Keep the <small>Advertisement</small> label. -->
- <div class="ad" id="ad-slot-2" data-slot="2"><small>Advertisement</small>
-  <span>Advertise here — reach boutique and tailoring shop owners. <a href="https://wa.me/917207629246?text=Hi%20Kuttu%2C%20I%27d%20like%20to%20advertise%20on%20your%20website" target="_blank" rel="noopener">Enquire on WhatsApp</a></span></div>
+ <div class="ad kad" id="ad-slot-2" data-slot="2"><small>Advertisement</small>
+  <svg class="kmark" role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>
+  <div class="ktxt"><b>Run your whole boutique from one screen.</b><span>Stock, GST bills, stitching orders and staff pay. Works offline, in English, हिन्दी and తెలుగు.</span></div>
+  <a class="btn gold" href="#pricing">Get Kuttu &middot; &#8377;999</a></div>
 </div></section>
 
 <section id="careers" class="alt"><div class="wrap" style="text-align:center">
