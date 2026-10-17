@@ -234,6 +234,8 @@ footer .social span{display:none}
 .phrow{display:flex;gap:8px}.phrow select{flex:0 0 46%;min-width:0;width:auto}.phrow input{flex:1;min-width:0}
 .vnote{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:80;display:flex;gap:12px;align-items:flex-start;background:#fff;border:2px solid var(--teal);border-radius:12px;padding:12px 16px;box-shadow:0 12px 30px -10px rgba(0,0,0,.35);width:max-content;max-width:min(92vw,520px);box-sizing:border-box;font-size:.9rem;color:var(--ink)}
 .vnote[hidden]{display:none}.vnote button{background:none;border:0;font-size:1.3rem;line-height:1;cursor:pointer;color:var(--mute)}
+.vcount{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:75;width:max-content;max-width:min(94vw,640px);box-sizing:border-box;background:#fff;border:2px solid var(--teal);border-radius:14px;padding:14px 16px;box-shadow:0 14px 34px -12px rgba(0,0,0,.4);display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.vcount[hidden]{display:none}.vcount p{margin:0;flex:1 1 280px;font-size:.88rem;color:var(--ink)}.vcount .vcb{display:flex;gap:8px;flex:none}.vcount .btn{padding:9px 16px;font-size:.86rem}
 .rq{color:var(--red)}.hint{display:block;color:var(--mute);font-size:.76rem;margin-top:4px;min-height:1em}
 @media(max-width:560px){.frow{grid-template-columns:1fr}}
 .drop{border:2px dashed var(--line);border-radius:12px;padding:14px;background:#faf6ec;margin-top:6px}
@@ -283,13 +285,17 @@ footer a{color:var(--gold-l)}
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="mk" viewBox="20 10 200 210"><circle cx="120" cy="115" r="95" fill="#0d5f5f"/><path d="M90,90 Q120,55 165,45" fill="none" stroke="#f0d78a" stroke-width="5" stroke-linecap="round"/><path d="M90,140 Q120,175 165,185" fill="none" stroke="#f0d78a" stroke-width="5" stroke-linecap="round"/><line x1="90" y1="35" x2="90" y2="195" stroke="#a87d12" stroke-width="9" stroke-linecap="round"/><path d="M90,50 C68,75 102,90 78,115 C54,140 102,155 90,190" fill="none" stroke="#f0d78a" stroke-width="3" stroke-linecap="round"/><ellipse cx="90" cy="42" rx="7" ry="9" fill="#0d5f5f" stroke="#a87d12" stroke-width="3"/><circle cx="90" cy="50" r="6" fill="#8c1c3a"/></symbol></svg>
 
+<div class="vcount" id="vcount" role="dialog" aria-label="Counting visits" hidden>
+ <p>May we count visits to improve this website? We use Google Analytics. It does not collect your name, phone or email, and you can say no. <a href="#privacy" id="vcPriv">Privacy note</a></p>
+ <div class="vcb"><button type="button" class="btn" id="vcYes">Yes, that's fine</button><button type="button" class="btn ghost" id="vcNo">No thanks</button></div>
+</div>
 <div class="vnote" id="vnote" role="status" hidden><span></span><button type="button" id="vnoteX" aria-label="Close">&times;</button></div>
 <header>
  <div class="wrap bar">
   <a class="brand" href="#top"><svg role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>kuttu</a>
   <input type="checkbox" id="nt"><label for="nt" class="burger" aria-label="Menu">☰</label>
   <nav><ul>
-   <li><a href="#suite">The Suite</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#stitching">Stitching</a></li><li><a href="#billing">Billing</a></li>
+   <li><a href="#about">About Us</a></li><li><a href="#suite">The Suite</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#stitching">Stitching</a></li><li><a href="#billing">Billing</a></li>
    <li><a href="#stock">Stock</a></li><li><a href="#staff-payment">Staff &amp; Payment</a></li><li><a href="#trust">Your Data</a></li>
    <li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li><li><a href="#careers">Careers</a></li><li><a href="shop.html">Shop With Us <span class="soon">Soon</span></a></li><li><a href="#contact">Contact Us</a></li>
   </ul></nav>
@@ -332,6 +338,20 @@ footer a{color:var(--gold-l)}
   <a class="btn gold" href="#pricing">Get Kuttu &middot; &#8377;999</a></div>
 </div></section>
 
+<section id="about"><div class="wrap">
+ <span class="eyebrow">About Us</span>
+ <h2>Software made for the shops it serves.</h2>
+ <p class="lead">Kuttu is a small team in Hyderabad building one Windows suite for boutiques and tailoring shops: stock, GST bills, stitching orders, staff pay and reports in one place. We built it around how a working boutique really runs, and we keep improving it by listening to the shop owners and tailors who use it.</p>
+ <div class="grid">
+  <div class="card"><h3>Built around real shops</h3><p>Measurements, garment styles, advances, trial dates, cutting slips, piecework and salary: the things a boutique actually deals with every day, in the order it deals with them.</p></div>
+  <div class="card"><h3>Your data stays yours</h3><p>Kuttu runs on your own PC, works without internet and keeps your records in files you can see, back up and move. We don't hold your shop's data.</p></div>
+  <div class="card"><h3>In your language</h3><p>Every screen can be switched between English, हिन्दी and తెలుగు, so your staff can work in the language they read best.</p></div>
+  <div class="card"><h3>Help you can reach</h3><p>Message or call us. We can help you install, set up and get comfortable in Telugu, Hindi or English, and bug fixes are free for license holders.</p></div>
+ </div>
+ <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
+  <a class="btn" href="https://wa.me/917207629246?text=Hi%20Kuttu%2C%20I%27d%20like%20to%20know%20more%20about%20Kuttu" target="_blank" rel="noopener">Chat on WhatsApp</a>
+  <a class="btn ghost" href="tel:+917207629246">Call +91 72076 29246</a></div>
+</div></section>
 <section class="prob"><div class="wrap">
  <span class="eyebrow">Why boutiques switch</span>
  <h2>Three notebooks, one memory, and a lot of guessing.</h2>
@@ -759,6 +779,7 @@ footer a{color:var(--gold-l)}
  <ul class="chk">
   <li><b>What we collect when you sign up:</b> your name and email address or mobile number, from the sign-in method you choose (Google or email). If you sign in with email and password, we never see your password.</li>
   <li><b>Your profile:</b> after you sign in we also ask for your mobile number, shop or boutique name, type of shop, city, state, pincode and country, and (if you choose) your GST number. You can view and change them any time from <b>My profile</b>, which also lists your purchases (reference, date, amount, status) and billing details, matched by your verified email address.</li>
+  <li><b>Visit counting:</b> only if you tap Yes on the small notice, and only once a Google Analytics ID has been set up, Kuttu counts visits to this website (which pages are opened, from which country and device type, and how people found us) using Google Analytics. It does not collect your name, phone number or email for this, and no advertising is built on it. If you tap No, nothing is loaded. To change your answer, clear this site's data in your browser.</li>
   <li><b>Why:</b> to create your account, let you buy Kuttu, send your download and license key, and give you support. Nothing else.</li>
   <li><b>Who else sees it:</b> the sign-in service that stores accounts (Google Firebase), the payment provider that takes your payment, and the email service that delivers your download link. We do not see your card or UPI details, and we do not sell or rent your details to anyone.</li>
   <li><b>If you apply for a job:</b> we collect your name, email, mobile number, the role, any message you write and the resume you upload. Only our hiring team can open them. We use them only to consider you for a role, and you can ask us to delete them at any time.</li>
@@ -915,6 +936,9 @@ window.KUTTU_FIREBASE = {
 };
 /* App Check (blocks bots from spamming resume uploads): the reCAPTCHA Enterprise (Fraud Defense) SITE key.
    Leave the placeholder to keep App Check off. See firebase/SETUP.md, section 6. */
+/* Visit counting (Google Analytics 4). Paste the web data stream's Measurement ID (G-XXXXXXXXXX) here to switch it on.
+   Until then nothing is loaded and no notice is shown. Even when it is on, nothing is counted until the visitor taps "Yes". */
+window.KUTTU_ANALYTICS_ID = "G-6LQS69W4H0";
 window.KUTTU_APPCHECK_KEY = "6Lebru0tAAAAAJwBF4p29BYkt3Oesr_0HSo4iqax";
 /* Address of the requestNewLink function (printed when you deploy the functions; see firebase/SETUP.md, section 7). */
 window.KUTTU_NEWLINK_URL = "REQUEST_NEW_LINK_FUNCTION_URL_HERE";
@@ -1612,6 +1636,30 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   }, { rootMargin: '-35% 0px -60% 0px' });
   [['preview', 'analytics'], ['salary', 'staff-payment'], ['language', 'staff-payment']].forEach(function (p) { if (map[p[1]] && document.getElementById(p[0])) map[p[0]] = map[p[1]]; });   // sections without their own menu item light up the item above them
   Object.keys(map).forEach(function (id) { io.observe(document.getElementById(id)); });
+})();
+</script>
+<script>
+(function () {
+  /* Counts visits with Google Analytics only when (1) a Measurement ID has been filled in above and (2) the visitor taps Yes.
+     The answer is remembered in this browser; a visitor who says no is never asked again and nothing is loaded. */
+  var id = window.KUTTU_ANALYTICS_ID || '', box = document.getElementById('vcount');
+  if (!box || !/^G-[A-Z0-9]{6,}$/.test(id)) return;
+  var KEY = 'kuttuVisitCount';
+  function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function put(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function start() {
+    if (window.__kuttuGa) return; window.__kuttuGa = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date()); window.gtag('config', id, { anonymize_ip: true });
+    var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+    document.head.appendChild(s);
+  }
+  var saved = get();
+  if (saved === 'yes') start(); else if (saved !== 'no') box.hidden = false;
+  document.getElementById('vcYes').onclick = function () { put('yes'); box.hidden = true; start(); };
+  document.getElementById('vcNo').onclick = function () { put('no'); box.hidden = true; };
+  document.getElementById('vcPriv').onclick = function () { box.hidden = true; };
 })();
 </script>
 </body>
