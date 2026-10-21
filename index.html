@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Kuttu — Software for Boutiques & Tailoring Shops</title>
-<meta name="description" content="Kuttu is offline Windows software for boutiques and tailoring shops: stock, GST billing, stitching orders, staff pay and expenses. English, Hindi, Telugu.">
-<meta property="og:title" content="Kuttu — Software for Boutiques & Tailoring Shops">
+<title>Kuttu — Software for the Garment Industry</title>
+<meta name="description" content="Kuttu is offline Windows software for the garment industry: boutiques, tailoring shops, wholesalers and manufacturing units. Stock, GST billing, stitching orders, staff pay and expenses. English, Hindi, Telugu.">
+<meta property="og:title" content="Kuttu — Software for the Garment Industry">
 <meta property="og:description" content="Stock, sales, GST bills, stitching orders and staff tracking in one offline Windows suite.">
 <link rel="canonical" href="https://kuttu.org/">
 <meta property="og:url" content="https://kuttu.org/">
@@ -244,6 +244,10 @@ footer .social span{display:none}
 .consent{display:flex!important;gap:10px;align-items:flex-start;font-weight:400!important;font-size:.84rem!important;color:var(--mute);margin-top:16px!important}
 .consent input{width:auto!important;margin:4px 0 0!important}
 .pbuy{margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
+.pdel{margin-top:22px;padding-top:14px;border-top:1px solid var(--line)}
+.pdel .dlink{background:none;border:0;color:var(--red);text-decoration:underline;cursor:pointer;font:600 .86rem var(--sans);padding:0}
+.pdel h4{font-size:1.05rem;margin:0 0 8px;color:var(--red)}.pdel .mini{color:var(--mute);font-size:.85rem;margin:6px 0}
+.pbtn.danger{background:var(--red);border-color:var(--red);color:#fff}.pbtn.danger[disabled]{opacity:.45;cursor:not-allowed}
 .pbuy h4{font-size:1.1rem;margin:0 0 8px}
 .pbuy .mini{color:var(--mute);font-size:.85rem;margin:6px 0}
 .pbuy .tw{overflow-x:auto}
@@ -278,6 +282,11 @@ footer .social span{display:none}
 footer{background:var(--teal-d);color:#cfe2df;padding-block:44px;font-size:.9rem}
 footer a{color:var(--gold-l)}
 .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot3{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+@media(max-width:760px){.foot3{grid-template-columns:1fr}}
+footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
+.flinks{list-style:none;margin:0;padding:0;display:grid;gap:8px}.flinks a{color:#cfe2df;text-decoration:none}.flinks a:hover{color:var(--gold-l);text-decoration:underline}
+.fcopy{margin-top:26px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);font-size:.84rem;color:#9db8b3}
 .wa-float{position:fixed;right:16px;bottom:16px;z-index:50;width:54px;height:54px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.25)}.wa-float svg{width:28px;height:28px;fill:#fff}
 </style>
 </head>
@@ -295,7 +304,7 @@ footer a{color:var(--gold-l)}
   <a class="brand" href="#top"><svg role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>kuttu</a>
   <input type="checkbox" id="nt"><label for="nt" class="burger" aria-label="Menu">☰</label>
   <nav><ul>
-   <li><a href="#about">About Us</a></li><li><a href="#suite">The Suite</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#stitching">Stitching</a></li><li><a href="#billing">Billing</a></li>
+   <li><a href="#about">About Us</a></li><li><a href="#who">Who It's For</a></li><li><a href="#suite">The Suite</a></li><li><a href="#analytics">Analytics</a></li><li><a href="#stitching">Stitching</a></li><li><a href="#billing">Billing</a></li>
    <li><a href="#stock">Stock</a></li><li><a href="#staff-payment">Staff &amp; Payment</a></li><li><a href="#trust">Your Data</a></li>
    <li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li><li><a href="#careers">Careers</a></li><li><a href="shop.html">Shop With Us <span class="soon">Soon</span></a></li><li><a href="#contact">Contact Us</a></li>
   </ul></nav>
@@ -307,9 +316,9 @@ footer a{color:var(--gold-l)}
 <main id="top">
 <section class="hero"><div class="wrap hero-grid">
  <div>
-  <span class="eyebrow">Software for boutiques &amp; tailoring shops</span>
+  <span class="eyebrow">Software for the garment industry</span>
   <h1>Your stock, your bills, your stitching orders — <em style="color:var(--gold)">one shop system.</em></h1>
-  <p class="lead">Kuttu is a Windows desktop suite built for a working boutique. Track fabric, sarees and readymade stock, print GST bills, take custom stitching measurements, pay salaries, record rent and shop expenses, and see clear reports of how the shop is doing — without a single notebook.</p>
+  <p class="lead">Kuttu is a Windows desktop suite for the garment industry, built in a working boutique and made for boutiques, tailoring shops, wholesalers and factories. Track fabric, sarees and readymade stock, print GST bills, take custom stitching measurements, pay salaries, record rent and shop expenses, and see clear reports of how the shop is doing — without a single notebook.</p>
   <div class="cta"><a class="btn" href="#pricing">Get Kuttu</a><a class="btn ghost" href="#suite">See the 11 modules</a></div>
   <div class="trust"><span>Works offline</span><span>Data stays on your PC</span><span>Windows 10 / 11</span><span>Reports &amp; analytics</span><span>English · हिन्दी · తెలుగు screens</span></div>
  </div>
@@ -334,16 +343,16 @@ footer a{color:var(--gold-l)}
       or paste an ad-network script. Keep the <small>Advertisement</small> label. -->
  <div class="ad kad" id="ad-slot-1" data-slot="1"><small>Advertisement</small>
   <svg class="kmark" role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>
-  <div class="ktxt"><b>Run your whole boutique from one screen.</b><span>Stock, GST bills, stitching orders and staff pay. Works offline, in English, हिन्दी and తెలుగు.</span></div>
+  <div class="ktxt"><b>Run your whole garment business from one screen.</b><span>Stock, GST bills, stitching orders and staff pay. Works offline, in English, हिन्दी and తెలుగు.</span></div>
   <a class="btn gold" href="#pricing">Get Kuttu &middot; &#8377;999</a></div>
 </div></section>
 
 <section id="about"><div class="wrap">
  <span class="eyebrow">About Us</span>
  <h2>Software made for the shops it serves.</h2>
- <p class="lead">Kuttu is a small team in Hyderabad building one Windows suite for boutiques and tailoring shops: stock, GST bills, stitching orders, staff pay and reports in one place. We built it around how a working boutique really runs, and we keep improving it by listening to the shop owners and tailors who use it.</p>
+ <p class="lead">Kuttu is a small team in Hyderabad building one Windows suite for the garment industry (boutiques, tailoring shops, wholesalers and manufacturing units): stock, GST bills, stitching orders, staff pay and reports in one place. We built it around how a working boutique really runs, and we keep improving it by listening to the shop owners and tailors who use it.</p>
  <div class="grid">
-  <div class="card"><h3>Built around real shops</h3><p>Measurements, garment styles, advances, trial dates, cutting slips, piecework and salary: the things a boutique actually deals with every day, in the order it deals with them.</p></div>
+  <div class="card"><h3>Built around real shops</h3><p>Measurements, garment styles, advances, trial dates, cutting slips, piecework and salary: the things a garment business actually deals with every day, in the order it deals with them.</p></div>
   <div class="card"><h3>Your data stays yours</h3><p>Kuttu runs on your own PC, works without internet and keeps your records in files you can see, back up and move. We don't hold your shop's data.</p></div>
   <div class="card"><h3>In your language</h3><p>Every screen can be switched between English, हिन्दी and తెలుగు, so your staff can work in the language they read best.</p></div>
   <div class="card"><h3>Help you can reach</h3><p>Message or call us. We can help you install, set up and get comfortable in Telugu, Hindi or English, and bug fixes are free for license holders.</p></div>
@@ -353,13 +362,21 @@ footer a{color:var(--gold-l)}
   <a class="btn ghost" href="tel:+917207629246">Call +91 72076 29246</a></div>
 </div></section>
 <section class="prob"><div class="wrap">
- <span class="eyebrow">Why boutiques switch</span>
+ <span class="eyebrow">Why garment businesses switch</span>
  <h2>Three notebooks, one memory, and a lot of guessing.</h2>
  <div class="three">
   <div><h3>“How much lining is left?”</h3><p>Stock lives in a register, sales in another. Kuttu links them — every sale reduces the matching stock automatically.</p></div>
   <div><h3>“What were her measurements?”</h3><p>Measurements, garment style and balance due for every customer, stored and searchable — with a printable chit for the tailor.</p></div>
   <div><h3>“Who stitched how many?”</h3><p>Daily piecework per cutting master and tailor, summed by day or date range, ready for payday.</p></div>
  </div>
+</div></section>
+
+<section id="who"><div class="wrap">
+ <span class="eyebrow">Who it's for</span>
+ <h2>Who is Kuttu for?</h2>
+ <p class="lead">Kuttu is for the whole garment industry, not only boutiques. Every business opens the same Home screen and uses the modules that fit its work.</p>
+ <div class="grid"><div class="card"><span class="tag">CUSTOM ORDERS</span><h3>Boutiques</h3><p>Custom orders with measurements, stock and bills.</p></div><div class="card"><span class="tag">PIECE STOCK</span><h3>Saree shops</h3><p>Piece-wise stock, bills and balance due.</p></div><div class="card"><span class="tag">WORKSHOP</span><h3>Tailoring units</h3><p>Orders, cutting slips, piecework and attendance.</p></div><div class="card"><span class="tag">RETAIL</span><h3>Readymade stores</h3><p>Stock by type and size, sales with GST.</p></div><div class="card"><span class="tag">TRADE</span><h3>Wholesalers</h3><p>Stock by item, GST bills and the balance each buyer owes.</p></div><div class="card"><span class="tag">PRODUCTION</span><h3>Factories</h3><p>Who cut and stitched what, attendance and salary for the whole team.</p></div></div>
+ <p class="lead" style="margin-top:26px">Not sure it fits your business? Message us on WhatsApp and we will tell you honestly.</p>
 </div></section>
 
 <section id="suite"><div class="wrap">
@@ -387,7 +404,7 @@ footer a{color:var(--gold-l)}
  <div class="group"><h3>Shop expenses &amp; pay</h3>
  <div class="grid">
   <div class="card"><span class="tag">EXPENSES</span><div class="code g">MP</div><h3>Stationery &amp; Misc Purchases</h3><p>Record everyday buys that aren't stock — stationery, tailoring supplies, packaging, running costs — by category, with payment mode and a spent-by-category total.</p></div>
-  <div class="card"><span class="tag">PAY &amp; RENT</span><div class="code g">SR</div><h3>Salary &amp; Rent</h3><p>Pay staff monthly, weekly or daily with leave deducted per day, a bonus where you give one, and a printable salary slip, and track each month's shop rent as Paid, Part paid or Due.</p></div>
+  <div class="card"><span class="tag">PAY &amp; RENT</span><div class="code g">SR</div><h3>Salary &amp; Rent</h3><p>Pay staff monthly, weekly or daily with leave deducted per day, a bonus where you give one, shift hours for daily-pay staff, and a printable salary slip, and track each month's shop rent as Paid, Part paid or Due.</p></div>
  </div></div>
 
  <div class="group"><h3>Across everything</h3>
@@ -512,6 +529,7 @@ footer a{color:var(--gold-l)}
    <li>Saree fall, pico, blouse cutting and border work as a service order — choose any combination, and the border fabric type when there is one</li>
    <li>Blouse workings are ordered on their own: aari, maggam, embroidery, zari, stone, beads, cut work or tassels, in any combination, alongside the blouse itself</li>
    <li>Alterations are a garment of their own: pick what is being altered (blouse, salwar, kurta, saree and more) from a list, with no body measurements needed, and note the order it was first made on</li>
+   <li>The Item Order list has a Gender column, so a mixed men's and women's order is clear at a glance</li>
    <li>Give each garment its own name, such as "Red wedding blouse", so a repeat order is easy to tell apart</li>
    <li>Add a Trial Date between the order date and delivery date for fittings</li>
    <li>One order can hold both men's and women's garments for the same family — each garment keeps its own gender, and the bill and chit list them together</li>
@@ -665,7 +683,7 @@ footer a{color:var(--gold-l)}
   <div class="card"><h3>Fully offline</h3><p>No internet needed to run your shop. Everything is stored in files on your own computer.</p></div>
   <div class="card"><h3>Safe saves &amp; backups</h3><p>Every change is saved at once and a backup copy is made after every save (the last 50 are kept). Backup / Restore takes you back to an earlier copy, and a power cut in the middle of a save won't corrupt your records.</p></div>
   <div class="card"><h3>You choose where data lives</h3><p>Keep your data on any folder or drive — not only C:. Change it any time in System Settings; Kuttu copies your records to the new place and never overwrites data that is already there.</p></div>
-  <div class="card"><h3>Back up once a week</h3><p>Copy the data folder to a pen drive or cloud storage each week. Backups on the same PC don't help if the PC itself is lost.</p></div>
+  <div class="card"><h3>Back up once a week</h3><p>Copy the data folder to a pen drive or an external drive each week. Backups on the same PC don't help if the PC itself is lost.</p></div>
   <div class="card"><h3>One installer</h3><p>A single Windows setup installs all modules together behind one Home launcher.</p></div>
   <div class="card"><h3>Your shop on every bill</h3><p>Enter your shop name, GSTIN, address and phone once in Shop Settings. Every bill and slip prints them.</p></div>
  </div>
@@ -675,7 +693,7 @@ footer a{color:var(--gold-l)}
  <span class="eyebrow">Pricing</span><h2>One price. The whole suite.</h2>
  <div class="two">
   <div class="role"><h3>Kuttu Application — full suite</h3>
-   <div class="price"><s style="font-size:1.5rem;color:var(--mute);font-weight:500">₹24,999</s> ₹999 <span class="off">96% off</span></div><p style="color:var(--mute)">One-year license · all eleven modules</p>
+   <div class="price"><s style="font-size:1.5rem;color:var(--mute);font-weight:500">₹24,999</s> ₹999 <span class="off">96% off</span></div><p style="margin:0 0 6px;font-weight:700;color:var(--red)">Offer price valid only till 31 December 2026.</p><p style="color:var(--mute)">One-year license · all eleven modules</p>
    <p style="margin:0 0 14px;font-weight:700;color:var(--teal-d);font-size:.92rem">📈 Includes Consolidated Analytics — reports and charts for the whole shop. <a href="#analytics">See how</a></p>
    <div style="display:flex;gap:10px;flex-wrap:wrap">
     <a class="btn" href="https://wa.me/917207629246?text=Hi%20Kuttu%2C%20I%27d%20like%20to%20buy%20the%20Kuttu%20Application" target="_blank" rel="noopener">Chat on WhatsApp</a>
@@ -698,6 +716,7 @@ footer a{color:var(--gold-l)}
 
 <section id="faq" class="alt"><div class="wrap" style="max-width:820px">
  <span class="eyebrow">FAQ</span><h2 style="margin-bottom:28px">Questions shop owners ask</h2>
+ <details><summary>Is Kuttu only for boutiques?</summary><p>No. Kuttu is for the whole garment industry: boutiques, saree shops, tailoring units, readymade stores, wholesalers and factories. It covers stock, GST bills, stitching orders, who cut and stitched what, attendance, salary and reports. It does not yet do challans, e-way bills or production planning, so if you need those, ask us before you buy.</p></details>
  <details><summary>Where is my data stored? Is it safe?</summary><p>On your own PC, in local files — in a folder <b>you choose</b>, on any drive. The first time you open Kuttu it asks where to keep your data, and you can change it later in System Settings, which also shows where your data, backups and logs are. Nothing is uploaded, saves are atomic, and backups are kept automatically.</p></details>
  <details><summary>Do I need internet?</summary><p>No. Kuttu runs fully offline. Internet is only used if you choose to share a bill through WhatsApp.</p></details>
  <details><summary>Can I use it for only sarees, or only stitching?</summary><p>Yes. Each module opens on its own from Home, so use only the ones your shop needs.</p></details>
@@ -720,20 +739,20 @@ footer a{color:var(--gold-l)}
       or paste an ad-network script. Keep the <small>Advertisement</small> label. -->
  <div class="ad kad" id="ad-slot-2" data-slot="2"><small>Advertisement</small>
   <svg class="kmark" role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>
-  <div class="ktxt"><b>Run your whole boutique from one screen.</b><span>Stock, GST bills, stitching orders and staff pay. Works offline, in English, हिन्दी and తెలుగు.</span></div>
+  <div class="ktxt"><b>Run your whole garment business from one screen.</b><span>Stock, GST bills, stitching orders and staff pay. Works offline, in English, हिन्दी and తెలుగు.</span></div>
   <a class="btn gold" href="#pricing">Get Kuttu &middot; &#8377;999</a></div>
 </div></section>
 
 <section id="careers" class="alt"><div class="wrap" style="text-align:center">
  <span class="eyebrow">Careers</span><h2>Build software for real shops.</h2>
- <p class="lead" style="margin-inline:auto">Kuttu is a small team making software boutiques and tailoring shops use every day. We mostly look for interns, and our roles are usually part-time, so students and early-career applicants are very welcome. If you like practical problems and seeing your work used at a counter, we'd like to hear from you.</p>
+ <p class="lead" style="margin-inline:auto">Kuttu is a small team making software that garment businesses use every day. We mostly look for interns, and our roles are usually part-time, so students and early-career applicants are very welcome. If you like practical problems and seeing your work used at a counter, we'd like to hear from you.</p>
  <p style="display:inline-block;margin:22px auto 0;background:var(--gold-l);color:var(--teal-d);font-weight:700;padding:8px 18px;border-radius:999px">Interns preferred · Part-time roles welcome</p>
  <div class="jobs">
   <div class="job"><span class="meta">Engineering · Hyderabad</span><h3>Python Desktop Developer</h3><p>Work on the Kuttu suite: ledgers, billing and stitching modules, GST bills and reports.</p><span class="mailto">Call or WhatsApp <a href="tel:+917207629246">+91 72076 29246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
-  <div class="job"><span class="meta">Design · Hyderabad</span><h3>Fashion Designer</h3><p>Advise on garment types, measurements and style options (necklines, sleeves, linings and more) so Kuttu matches how boutiques and tailors really work.</p><span class="mailto">Call or WhatsApp <a href="tel:+917207629246">+91 72076 29246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
+  <div class="job"><span class="meta">Design · Hyderabad</span><h3>Fashion Designer</h3><p>Advise on garment types, measurements and style options (necklines, sleeves, linings and more) so Kuttu matches how garment businesses and tailors really work.</p><span class="mailto">Call or WhatsApp <a href="tel:+917207629246">+91 72076 29246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
   <div class="job"><span class="meta">Design · Intern · Part-time</span><h3>Fashion Design Intern</h3><p>Great for fashion students: help test measurement forms and cutting slips with real garment patterns, and suggest improvements.</p><span class="mailto">Call or WhatsApp <a href="tel:+917207629246">+91 72076 29246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
   <div class="job"><span class="meta">Customer success · Hyderabad</span><h3>Onboarding &amp; Support Executive</h3><p>Help shop owners install Kuttu, move their stock and orders in, and get comfortable using it.</p><span class="mailto">Call or WhatsApp <a href="tel:+917207629246">+91 72076 29246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
-  <div class="job"><span class="meta">Sales · Hyderabad</span><h3>Boutique Sales Associate</h3><p>Meet boutiques and tailoring shops, run demos, and explain how Kuttu fits their work.</p><span class="mailto">Call or WhatsApp <a href="tel:+917207629246">+91 72076 29246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
+  <div class="job"><span class="meta">Sales · Hyderabad</span><h3>Boutique Sales Associate</h3><p>Meet garment businesses, run demos, and explain how Kuttu fits their work.</p><span class="mailto">Call or WhatsApp <a href="tel:+917207629246">+91 72076 29246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
   <div class="job"><span class="meta">Tailoring · Hyderabad</span><h3>Cutting Master and Tailors</h3><p>We are hiring skilled cutting masters and tailors for blouses, churidars, kurtas and other garments. Tell us your experience and the garments you are best at.</p><span class="mailto">Call or WhatsApp <a href="tel:+917207629246">+91 72076 29246</a></span><br><span class="mailto">Send email to enquiry@kuttu.org</span></div>
  </div>
  <p style="margin:26px 0 0;color:var(--mute)">Don't see your role? Send a general application with your resume to enquiry@kuttu.org, or message us on <a href="https://wa.me/917207629246?text=Hi%20Kuttu%2C%20I%20have%20a%20question%20about%20careers" target="_blank" rel="noopener">WhatsApp</a>.</p></div></section>
@@ -774,11 +793,28 @@ footer a{color:var(--gold-l)}
  </div>
 </div>
 
+<section id="terms"><div class="wrap" style="max-width:820px">
+ <span class="eyebrow">Terms and Conditions</span><h2 style="margin-bottom:8px">How buying and using Kuttu works</h2>
+ <p style="color:var(--mute);margin:0 0 18px">In plain language. Last updated 21 October 2026. By buying or using Kuttu you agree to these terms.</p>
+ <ul class="chk">
+  <li><b>What you are buying:</b> a license to use the Kuttu Application, a Windows desktop software suite for boutiques and tailoring shops, from the date we send you your download link and license key.</li>
+  <li><b>One license, one PC, one year:</b> a license covers one PC for one year, activated with a key made for that PC. If your computer changes, send us the new Machine ID and we reply with a new key. Please do not copy, share or resell the software or your key, and do not try to get around the activation. After the year, the app asks for a new key; the renewal price is available on request.</li>
+  <li><b>Price and payment:</b> the price is the one shown on this website when you buy. The ₹999 offer price is valid only till 31 December 2026; offers can change or end. We confirm your payment with you before sending the download link and key.</li>
+  <li><b>No refunds:</b> because the purchase covers a one-year license that we activate for your PC, there are no refunds. Please ask us any questions before you buy.</li>
+  <li><b>Updates:</b> bug fixes are free for customers who have bought a license; we send the new installer and it keeps your data and your license. New modules are paid add-ons, and we tell you the price before you decide. Updates never install by themselves.</li>
+  <li><b>Your data and backups:</b> Kuttu keeps your shop's records on your own PC. They are yours, and we do not hold them, so we cannot recover them if they are lost. Please back up the data folder every week to a pen drive or an external drive.</li>
+  <li><b>Support:</b> message or call us on WhatsApp or phone, or write to us. We can help you install and set up in Telugu, Hindi or English.</li>
+  <li><b>Your website account:</b> an account is needed only to keep your profile on this website. You can delete it any time from <b>My profile</b>. See the privacy note below for how we handle your details.</li>
+  <li><b>Changes:</b> we may update these terms. The date at the top shows the latest version.</li>
+  <li><b>Questions:</b> <a href="https://wa.me/917207629246?text=Hi%20Kuttu%2C%20I%20have%20a%20question%20about%20the%20terms" target="_blank" rel="noopener">WhatsApp us</a>, call <a href="tel:+917207629246">+91 72076 29246</a> or write to <a data-mail href="mailto:enquiry@kuttu.org">enquiry@kuttu.org</a>.</li>
+ </ul>
+</div></section>
 <section id="privacy" class="alt"><div class="wrap" style="max-width:820px">
  <span class="eyebrow">Privacy note</span><h2 style="margin-bottom:18px">How we handle your details</h2>
  <ul class="chk">
   <li><b>What we collect when you sign up:</b> your name and email address or mobile number, from the sign-in method you choose (Google or email). If you sign in with email and password, we never see your password.</li>
-  <li><b>Your profile:</b> after you sign in we also ask for your mobile number, shop or boutique name, type of shop, city, state, pincode and country, and (if you choose) your GST number. You can view and change them any time from <b>My profile</b>, which also lists your purchases (reference, date, amount, status) and billing details, matched by your verified email address.</li>
+  <li><b>Your profile:</b> after you sign in we also ask for your mobile number, shop or business name, type of shop, city, state, pincode and country, and (if you choose) your GST number. You can view and change them any time from <b>My profile</b>, which also lists your purchases (reference, date, amount, status) and billing details, matched by your verified email address.</li>
+  <li><b>Deleting your account:</b> sign in, open <b>My profile</b> and choose <b>Delete my account</b> at the bottom. This removes your sign-in and the profile you saved. Records of purchases (payment reference, date and amount) are kept for our accounts and support; write to enquiry@kuttu.org to have those removed as well. A Kuttu license already installed on your PC keeps working.</li>
   <li><b>Visit counting:</b> only if you tap Yes on the small notice, and only once a Google Analytics ID has been set up, Kuttu counts visits to this website (which pages are opened, from which country and device type, and how people found us) using Google Analytics. It does not collect your name, phone number or email for this, and no advertising is built on it. If you tap No, nothing is loaded. To change your answer, clear this site's data in your browser.</li>
   <li><b>Why:</b> to create your account, let you buy Kuttu, send your download and license key, and give you support. Nothing else.</li>
   <li><b>Who else sees it:</b> the sign-in service that stores accounts (Google Firebase), the payment provider that takes your payment, and the email service that delivers your download link. We do not see your card or UPI details, and we do not sell or rent your details to anyone.</li>
@@ -789,12 +825,22 @@ footer a{color:var(--gold-l)}
  <p style="margin:18px 0 0;color:var(--mute);font-size:.85rem">Last updated 12 October 2026.</p>
 </div></section>
 
-<footer><div class="wrap foot">
+<footer>
+<div class="wrap foot3">
  <div><a class="brand" href="#top" style="color:#fff"><svg role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>kuttu</a>
-  <p style="margin:10px 0 0">Software for boutiques and tailoring shops.</p>
+  <p style="margin:10px 0 0">Software for the garment industry.</p>
+  <p style="margin:10px 0 0">WhatsApp / Phone: <a href="tel:+917207629246">+91 72076 29246</a><br>Email: <a data-mail href="mailto:enquiry@kuttu.org">enquiry@kuttu.org</a></p>
   <div class="social"><a href="https://www.instagram.com/kuttu_1110/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 4 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7C8.3 24 8.7 24 12 24s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8a6.2 6.2 0 100 12.4 6.2 6.2 0 000-12.4zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.8a1.4 1.4 0 100 2.9 1.4 1.4 0 000-2.9z"/></svg><span>Instagram</span></a><a href="https://www.threads.com/@kuttu_1110" target="_blank" rel="noopener" aria-label="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><text x="12" y="19" text-anchor="middle" font-size="22" font-weight="700" font-family="Arial,sans-serif">@</text></svg><span>Threads</span></a><a href="https://www.facebook.com/share/19YPNL5v3Y/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg><span>Facebook</span></a><a href="https://wa.me/917207629246" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.6.1c-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1s0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5s0-.4 0-.5-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.6 1 3.1.8 3.7.8.6-.1 1.8-.7 2-1.4s.3-1.3.2-1.4-.3-.2-.6-.3zM12 21.8a9.8 9.8 0 01-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1112 21.8zM12 0a12 12 0 00-10.3 18L0 24l6.2-1.6A12 12 0 1012 0z"/></svg><span>WhatsApp</span></a></div></div>
- <div>WhatsApp / Phone: <a href="tel:+917207629246" style="color:var(--gold-l)">+91 72076 29246</a><br>Email: <a data-mail href="mailto:enquiry@kuttu.org" style="color:var(--gold-l)">enquiry@kuttu.org</a><br><a href="#privacy">Privacy note</a> · © 2026 Kuttu</div>
-</div></footer>
+ <div><h4>Our Features</h4><ul class="flinks">
+  <li><a href="#suite">The Suite</a></li><li><a href="#billing">GST bills and sales</a></li><li><a href="#stitching">Stitching orders</a></li>
+  <li><a href="#stock">Stock and barcodes</a></li><li><a href="#staff-payment">Staff and salary</a></li><li><a href="#analytics">Analytics and reports</a></li>
+  <li><a href="#language">English, हिन्दी, తెలుగు</a></li></ul></div>
+ <div><h4>Quick Links</h4><ul class="flinks">
+  <li><a href="#about">About Us</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li><li><a href="#careers">Careers</a></li>
+  <li><a href="#contact">Contact Us</a></li><li><a href="#terms">Terms and Conditions</a></li><li><a href="#privacy">Privacy Note</a></li></ul></div>
+</div>
+<div class="wrap fcopy">&copy; 2026 Kuttu. All rights reserved.</div>
+</footer>
 <div class="modal" id="applyModal" role="dialog" aria-modal="true" aria-labelledby="apTitle">
  <div class="mbox wide">
   <button class="x" id="apClose" aria-label="Close">&times;</button>
@@ -844,9 +890,9 @@ footer a{color:var(--gold-l)}
    </div>
    <label for="prEmail">Email <b class="rq">*</b></label><input type="email" id="prEmail" maxlength="150" autocomplete="email" readonly required>
    <div class="frow">
-    <div><label for="prShop">Shop / boutique name <b class="rq">*</b></label><input type="text" id="prShop" maxlength="120" autocomplete="organization" required></div>
+    <div><label for="prShop">Shop / business name <b class="rq">*</b></label><input type="text" id="prShop" maxlength="120" autocomplete="organization" required></div>
     <div><label for="prType">Type of shop <b class="rq">*</b></label>
-     <select id="prType" required><option>Boutique</option><option>Tailoring shop</option><option>Saree shop</option><option>Readymade garments</option><option>Fabric / lining shop</option><option>Other</option></select></div>
+     <select id="prType" required><option>Boutique</option><option>Tailoring shop</option><option>Saree shop</option><option>Readymade garments</option><option>Wholesale business</option><option>Manufacturing unit / Factory</option><option>Fabric / lining shop</option><option>Other</option></select></div>
    </div>
    <div class="frow">
     <div><label for="prCountry">Country <b class="rq">*</b></label><select id="prCountry" required autocomplete="off"></select></div>
@@ -864,6 +910,18 @@ footer a{color:var(--gold-l)}
    <div class="msg" id="prOut" role="status"></div>
   </form>
   <section class="pbuy" id="prBuy" hidden aria-label="Purchases and billing"></section>
+  <section class="pdel" id="prDel" hidden aria-label="Delete account">
+   <button type="button" class="dlink" id="prDelOpen">Delete my account</button>
+   <div id="prDelBox" hidden>
+    <h4>Delete your account</h4>
+    <p class="mini">This permanently deletes your sign-in and the profile details you saved here. It cannot be undone.<br>
+     <b>Not affected:</b> a Kuttu license already installed on your PC keeps working. We keep the record of any purchase you made (payment reference, date and amount) for our accounts and support; to have that removed too, write to enquiry@kuttu.org.</p>
+    <label class="consent" for="prDelOk"><input type="checkbox" id="prDelOk"><span>I understand. Delete my account.</span></label>
+    <div id="prDelPwBox" hidden><label for="prDelPw">Your password, to confirm it is you</label><input type="password" id="prDelPw" autocomplete="current-password"></div>
+    <div class="row"><button type="button" class="pbtn danger" id="prDelGo" disabled>Delete my account permanently</button><button type="button" class="pbtn alt" id="prDelCancel">Cancel</button></div>
+    <div class="msg" id="prDelOut" role="status"></div>
+   </div>
+  </section>
  </div>
 </div>
 
@@ -1308,6 +1366,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
     $('prConsent').checked = !!p.consent; $('prGo').disabled = false;
     pm.classList.add('open');
     var buy = $('prBuy'); buy.hidden = true; buy.textContent = '';
+    resetDelete(!first && !after);
     if (!first && !after) renderPurchases(u);            // "My profile": also show purchases and billing
   }
 
@@ -1428,13 +1487,58 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   window.addEventListener('kuttu-auth', function (e) {     // first sign-in: ask for the details once
     if (!e.detail || !e.detail.signedIn) {
       pAsked = false; pOld = null; pLoaded = false; closeProfile();
-      $('prForm').reset(); $('prPhone').value = ''; $('prState').value = ''; $('prStateSel').textContent = ''; $('prBuy').textContent = ''; $('prBuy').hidden = true; pSay('');
+      $('prForm').reset(); $('prPhone').value = ''; $('prState').value = ''; $('prStateSel').textContent = ''; $('prBuy').textContent = ''; $('prBuy').hidden = true; resetDelete(false); pSay('');
       return;
     }
     var u = pUser(); if (!u || !ready || pAsked) return;
     pAsked = true;          // fetched right after sign-in, so My profile opens instantly later
     getProfile(u).then(function (p) { if (!complete(p)) openProfile(null, true); }).catch(function () {});
   });
+  /* ---------- Delete my account: re-confirm who you are, delete the profile, then the sign-in ---------- */
+  function resetDelete(show) {
+    $('prDel').hidden = !show; $('prDelBox').hidden = true; $('prDelOpen').hidden = false;
+    $('prDelOk').checked = false; $('prDelGo').disabled = true; $('prDelPw').value = ''; $('prDelOut').textContent = '';
+  }
+  function delSay(t) { $('prDelOut').textContent = t || ''; $('prDelOut').className = 'msg'; }
+  function usesPassword(u) { return (u.providerData || []).some(function (p) { return p && p.providerId === 'password'; }); }
+  $('prDelOpen').onclick = function () {
+    var u = pUser(); if (!u) return;
+    $('prDelBox').hidden = false; $('prDelOpen').hidden = true; delSay('');
+    $('prDelPwBox').hidden = !usesPassword(u);
+    $('prDelBox').scrollIntoView({ block: 'nearest' });
+  };
+  $('prDelCancel').onclick = function () { resetDelete(true); };
+  $('prDelOk').onchange = function () { $('prDelGo').disabled = !this.checked; };
+  $('prDelGo').onclick = function () {
+    var u = pUser(); if (!u) { delSay('Please sign in again.'); return; }
+    var go = $('prDelGo'); delSay('');
+    var auth = firebase.auth(), reauth;
+    if (usesPassword(u)) {
+      var pw = $('prDelPw').value;
+      if (!pw) { delSay('Please type your password.'); return; }
+      reauth = u.reauthenticateWithCredential(firebase.auth.EmailAuthProvider.credential(u.email, pw));
+    } else {
+      reauth = u.reauthenticateWithPopup(new firebase.auth.GoogleAuthProvider());
+    }
+    go.disabled = true; delSay('Deleting\u2026'); $('prDelOut').className = 'msg ok';
+    reauth.then(function () {
+      return within(needDb(), 10000).then(function () { return within(db.collection('profiles').doc(u.uid).delete(), 15000); });
+    }).then(function () {
+      return u.delete().catch(function () { throw new Error('signin'); });
+    }).then(function () {
+      closeProfile();
+      if (window.kuttuNote) window.kuttuNote('Your account has been deleted. We are sorry to see you go. You can create a new account at any time.');
+    }).catch(function (e) {
+      go.disabled = !$('prDelOk').checked; $('prDelOut').className = 'msg';
+      var code = e && e.code;
+      if (e && e.message === 'signin') delSay('Your saved profile was removed, but the sign-in could not be deleted. Please message us on WhatsApp and we will finish it.');
+      else if (code === 'auth/wrong-password' || code === 'auth/invalid-credential') delSay('That password is not right.');
+      else if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') delSay('Sign-in was cancelled, so nothing was deleted.');
+      else if (code === 'auth/network-request-failed' || (e && e.message === 'timeout')) delSay('No internet connection. Nothing was deleted. Please try again.');
+      else if (code === 'auth/too-many-requests') delSay('Too many tries. Please wait a little and try again.');
+      else delSay('Could not delete your account. Nothing was deleted. Please try again, or message us on WhatsApp.');
+    });
+  };
   $('prClose').onclick = closeProfile; $('prPriv').onclick = closeProfile;
   pm.addEventListener('click', function (e) { if (e.target === pm) closeProfile(); });
   $('prForm').addEventListener('submit', function (e) {
@@ -1449,7 +1553,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
       return pSay('Please enter a valid ' + pc.n + ' mobile number: ' + digitsText(pc) + ', without the country code' + (pc.n === 'India' ? ' (it starts with 6, 7, 8 or 9).' : '.'));
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email)) return pSay('Please enter a valid email.');
-    if (d.shopName.length < 2) return pSay('Please enter your shop or boutique name.');
+    if (d.shopName.length < 2) return pSay('Please enter your shop or business name.');
     if (!d.shopType) return pSay('Please choose the type of shop.');
     if (!d.country) return pSay('Please choose your country.');
     if (d.state.length < 2) return pSay(stateList() ? 'Please choose your state or province.' : 'Please enter your state, province or region.');
