@@ -454,7 +454,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <div class="group"><h3>Across everything</h3>
  <div class="grid">
   <div class="card"><span class="tag">HOME</span><div class="code r">CA</div><h3>Consolidated Analytics</h3><p>One report page across all modules: inventory value, sales revenue, Print Bill invoicing, stitching orders, staff piecework, expenses, and salary and rent paid — with charts and links into each module's full report.</p></div>
-  <div class="card"><span class="tag">HOME</span><div class="code r">GS</div><h3>GST Summary</h3><p>One window with the GST on all your bills for any period: by application, by HSN code, and bill by bill. Export it to Excel for your accountant. It is a summary of your own bills, not a GST return filing.</p></div>
+  <div class="card"><span class="tag">HOME</span><div class="code r">GS</div><h3>GST Summary</h3><p>One window with the GST on all your bills for any period: by application, by HSN code, and bill by bill, for one company or all your companies. Export it to Excel for your accountant. It is a summary of your own bills, not a GST return filing.</p></div>
  </div></div>
 </div></section>
 
@@ -626,13 +626,14 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
    <li>A Balance Due list shows every bill with money still to collect</li>
    <li>Send via WhatsApp opens WhatsApp with the bill ready — you press Send</li>
    <li>Set your own shop name, GSTIN, address and phone once in Shop Settings — they print on every bill. No GSTIN entered means no GST is charged</li>
+   <li>Bill under <b>more than one GST number</b>: add up to five companies in Shop Settings, each with its own GSTIN, address and bill numbers (such as X-0041 and Y-0017). Each stock item belongs to a company, so scanning its barcode bills it under the right GST number — you never switch anything at the counter. Choose a default company for items without a barcode, and switch any company on or off. In GST Summary, switch between one company and all of them</li>
    <li>Set the CGST and SGST percentages in Shop Settings. If the rate changes, old bills keep the rate they were charged at</li>
    <li>Mark each fabric, saree or readymade sale as <b>GST</b> or <b>Non-GST</b> — the whole bill follows your choice, and Non-GST bills show no CGST or SGST</li>
    <li>Switch GST off for any billing module that doesn't need it — those bills say "GST: Not applicable"</li>
    <li>QR Code and Online payments record a Transaction ID, printed on the bill</li>
    <li>Bill-number prefixes for each module are yours to set</li>
    <li>Set one HSN code for each billing module in Shop Settings, printed on every bill line</li>
-   <li>A <b>GST Summary</b> on Home totals your CGST and SGST by month — per application, per HSN code and bill by bill — ready to export to Excel for your accountant</li>
+   <li>A <b>GST Summary</b> on Home totals your CGST and SGST by month — per application, per HSN code and bill by bill — ready to export to Excel for your accountant. With several companies, choose one company or all of them; the Excel export writes one file for each company, headed with its name and GSTIN</li>
   </ul>
  </div>
 </div></section>
@@ -729,7 +730,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
   <div class="card"><h3>You choose where data lives</h3><p>Keep your data on any folder or drive — not only C:. Change it any time in System Settings; Kuttu copies your records to the new place and never overwrites data that is already there.</p></div>
   <div class="card"><h3>Back up once a week</h3><p>Copy the data folder to a pen drive or an external drive each week. Backups on the same PC don't help if the PC itself is lost.</p></div>
   <div class="card"><h3>One installer</h3><p>A single Windows setup installs all modules together behind one Home launcher.</p></div>
-  <div class="card"><h3>Your shop on every bill</h3><p>Enter your shop name, GSTIN, address and phone once in Shop Settings. Every bill and slip prints them.</p></div>
+  <div class="card"><h3>Your shop on every bill</h3><p>Enter your shop name, GSTIN, address and phone once in Shop Settings. Every bill and slip prints them. Run more than one GST number? Add each company there, up to five.</p></div>
  </div>
 </div></section>
 
@@ -764,6 +765,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <details><summary>Where is my data stored? Is it safe?</summary><p>On your own PC, in local files — in a folder <b>you choose</b>, on any drive. The first time you open Kuttu it asks where to keep your data, and you can change it later in System Settings, which also shows where your data, backups and logs are. Nothing is uploaded, saves are atomic, and backups are kept automatically.</p></details>
  <details><summary>Do I need internet?</summary><p>No. Kuttu runs fully offline. Internet is only used if you choose to share a bill through WhatsApp.</p></details>
  <details><summary>Can I use it for only sarees, or only stitching?</summary><p>Yes. Each module opens on its own from Home, so use only the ones your shop needs.</p></details>
+ <details><summary>Can I bill under more than one GST number?</summary><p>Yes. In Shop Settings you can add up to five companies, each with its own GSTIN, address, phone and bill numbers. Each stock item belongs to one company, so scanning its barcode bills it under the right GST number. If one basket holds items from two companies, Kuttu prints one invoice for each. A company with no GSTIN charges no GST. Stitching orders go under the company you choose as the default. The GST Summary can show one company or all of them. A shop with one company sees no change.</p></details>
  <details><summary>How many PCs does one license cover?</summary><p>One license covers one PC. If you want to run Kuttu on another computer, that needs its own license.</p></details>
  <details><summary>How do I buy, and what happens after I pay?</summary><p>Message us on WhatsApp or call <a href="tel:+917207629246">+91 72076 29246</a>. We take your shop details, confirm the payment and send you a private download link for the installer. If you lose the link, contact us and we will send it again. After installing, Kuttu asks you to activate it — see the next question.</p></details>
  <details><summary>How does activation work?</summary><p>When you first open Kuttu it shows your PC's Machine ID with Email and WhatsApp buttons. Send it to us, and we reply with a license key made for that PC. Paste the key in and Kuttu is activated. A key only works on the PC it was made for, and your license runs for one year from the day we issue it.</p></details>
