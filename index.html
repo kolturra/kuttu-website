@@ -169,9 +169,26 @@ footer .social span{display:none}
 .kad{justify-content:space-between;gap:16px;text-align:left;flex-wrap:wrap;border:0;border-radius:14px;background:var(--teal-d);color:#cfe2df;padding:22px 22px 16px}
 .kad small{color:rgba(255,255,255,.55)}
 .kad .kmark{width:46px;height:46px;flex:none}
-.kad .ktxt{flex:1 1 320px;display:flex;flex-direction:column;gap:2px}
-.kad .ktxt b{font:600 1.2rem/1.25 var(--serif);color:#fff}
-.kad .ktxt span{font-size:.9rem}
+/* The message scrolls right to left as a ticker: two identical groups side by side, the track slides by exactly one group, so the loop has no jump.
+   It pauses on hover or touch, with the Pause button, and does not move at all for visitors who ask their device for reduced motion. */
+.kad .kticker{flex:1 1 320px;min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.kad .ktrack{display:flex;width:max-content;animation:kscroll 50s linear infinite}
+.kad .kticker:hover .ktrack,.kad.paused .ktrack{animation-play-state:paused}
+.kad .kgrp{display:flex;flex:none}
+.kad .kitem{display:flex;align-items:center;gap:8px;white-space:nowrap;font-size:.9rem}
+.kad .kitem::after{content:"";flex:none;width:6px;height:6px;margin-inline:26px;border-radius:50%;background:var(--gold-l)}
+.kad .kitem b{font:600 1.2rem/1.25 var(--serif);color:#fff}
+.kad .kpause{position:absolute;top:3px;right:8px;padding:3px 6px;font:700 .62rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);background:none;border:0;cursor:pointer}
+.kad .kpause:hover,.kad .kpause:focus-visible{color:#fff}
+@keyframes kscroll{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){
+ .kad .ktrack{animation:none;width:auto}
+ .kad .kticker{-webkit-mask-image:none;mask-image:none}
+ .kad .kgrp[aria-hidden]{display:none}
+ .kad .kgrp{flex-wrap:wrap;gap:4px 28px}
+ .kad .kitem{white-space:normal;flex-wrap:wrap}.kad .kitem::after{display:none}
+ .kad .kpause{display:none}
+}
 .kad a.btn{white-space:nowrap;flex:none}
 .ad-tall{min-height:250px;max-width:336px}
 .authbar{display:flex;align-items:center;gap:10px;font-size:.85rem;font-weight:700}
@@ -341,9 +358,22 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <!-- AD SLOT 1 (below hero, 970x90 banner): replace everything inside .ad with your banner, e.g.
       <a href="ADVERTISER_URL" target="_blank" rel="sponsored noopener"><img src="AD_IMAGE_URL" alt="Advertiser name" width="970" height="90"></a>
       or paste an ad-network script. Keep the <small>Advertisement</small> label. -->
- <div class="ad kad" id="ad-slot-1" data-slot="1"><small>Advertisement</small>
+ <div class="ad kad" id="ad-slot-1" data-slot="1"><small>Advertisement</small><button class="kpause" type="button" aria-pressed="false">Pause</button>
   <svg class="kmark" role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>
-  <div class="ktxt"><b>Run your whole garment business from one screen.</b><span>Stock, GST bills, stitching orders and staff pay. Works offline, in English, हिन्दी and తెలుగు.</span></div>
+  <div class="kticker"><div class="ktrack">
+   <div class="kgrp">
+    <span class="kitem"><b>Run your whole garment business from one screen.</b> Stock, GST bills, stitching orders and staff pay.</span>
+    <span class="kitem"><b>Fully offline.</b> Your records stay in files on your own PC.</span>
+    <span class="kitem"><b>Speaks your language.</b> English, हिन्दी and తెలుగు on every screen.</span>
+    <span class="kitem"><b>Eleven modules, one Home screen.</b> Sales, stitching, stock, salary and reports.</span>
+   </div>
+   <div class="kgrp" aria-hidden="true">
+    <span class="kitem"><b>Run your whole garment business from one screen.</b> Stock, GST bills, stitching orders and staff pay.</span>
+    <span class="kitem"><b>Fully offline.</b> Your records stay in files on your own PC.</span>
+    <span class="kitem"><b>Speaks your language.</b> English, हिन्दी and తెలుగు on every screen.</span>
+    <span class="kitem"><b>Eleven modules, one Home screen.</b> Sales, stitching, stock, salary and reports.</span>
+   </div>
+  </div></div>
   <a class="btn gold" href="#pricing">Get Kuttu &middot; &#8377;999</a></div>
 </div></section>
 
@@ -737,9 +767,22 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <!-- AD SLOT 2 (above careers, 970x90 banner): replace everything inside .ad with your banner, e.g.
       <a href="ADVERTISER_URL" target="_blank" rel="sponsored noopener"><img src="AD_IMAGE_URL" alt="Advertiser name" width="970" height="90"></a>
       or paste an ad-network script. Keep the <small>Advertisement</small> label. -->
- <div class="ad kad" id="ad-slot-2" data-slot="2"><small>Advertisement</small>
+ <div class="ad kad" id="ad-slot-2" data-slot="2"><small>Advertisement</small><button class="kpause" type="button" aria-pressed="false">Pause</button>
   <svg class="kmark" role="img" aria-label="Kuttu logo"><use href="#mk"/></svg>
-  <div class="ktxt"><b>Run your whole garment business from one screen.</b><span>Stock, GST bills, stitching orders and staff pay. Works offline, in English, हिन्दी and తెలుగు.</span></div>
+  <div class="kticker"><div class="ktrack">
+   <div class="kgrp">
+    <span class="kitem"><b>Run your whole garment business from one screen.</b> Stock, GST bills, stitching orders and staff pay.</span>
+    <span class="kitem"><b>Fully offline.</b> Your records stay in files on your own PC.</span>
+    <span class="kitem"><b>Speaks your language.</b> English, हिन्दी and తెలుగు on every screen.</span>
+    <span class="kitem"><b>Eleven modules, one Home screen.</b> Sales, stitching, stock, salary and reports.</span>
+   </div>
+   <div class="kgrp" aria-hidden="true">
+    <span class="kitem"><b>Run your whole garment business from one screen.</b> Stock, GST bills, stitching orders and staff pay.</span>
+    <span class="kitem"><b>Fully offline.</b> Your records stay in files on your own PC.</span>
+    <span class="kitem"><b>Speaks your language.</b> English, हिन्दी and తెలుగు on every screen.</span>
+    <span class="kitem"><b>Eleven modules, one Home screen.</b> Sales, stitching, stock, salary and reports.</span>
+   </div>
+  </div></div>
   <a class="btn gold" href="#pricing">Get Kuttu &middot; &#8377;999</a></div>
 </div></section>
 
@@ -1760,6 +1803,17 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   document.getElementById('vcYes').onclick = function () { put('yes'); box.hidden = true; start(); };
   document.getElementById('vcNo').onclick = function () { put('no'); box.hidden = true; };
   document.getElementById('vcPriv').onclick = function () { box.hidden = true; };
+})();
+</script>
+<script>
+(function () {
+  /* Advertisement tickers: the Pause / Play button at the top right of each banner stops and restarts the scrolling. */
+  [].slice.call(document.querySelectorAll('.kad .kpause')).forEach(function (b) {
+    b.addEventListener('click', function () {
+      var on = b.closest('.kad').classList.toggle('paused');
+      b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.textContent = on ? 'Play' : 'Pause';
+    });
+  });
 })();
 </script>
 </body>
