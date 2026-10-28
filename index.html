@@ -170,6 +170,8 @@ ul.chk li:before{content:"✓";position:absolute;left:0;color:#fff;background:va
 .plan .until{margin:2px 0 6px;font-weight:700;color:var(--red)}
 .plan ul.chk{margin:12px 0 20px}
 .plan .acts{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}
+/* Two columns: both cards share the same seven rows, so title, price, list and buttons line up even when one title wraps. */
+@supports(grid-template-rows:subgrid){@media(min-width:761px){.plans{row-gap:0}.plan{display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:subgrid;grid-row:span 7}.plan .badge{justify-self:start;align-self:start}}}
 .cmp-h{margin-top:46px}
 .cmpwrap{margin-top:16px;overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:#fff}
 .cmp{width:100%;border-collapse:collapse}
@@ -778,7 +780,8 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <p class="lead">Both editions have all eleven modules, one PC and one year. Online Backup adds an hourly copy of your data in the Kuttu cloud. <b>Offer prices are valid only till 31 December 2026.</b></p>
  <div class="plans">
   <article class="plan">
-   <h3>Offline</h3>
+   <span class="badge">Offline edition</span>
+   <h3>Desktop Offline Application</h3>
    <p class="sub">Your data stays on your PC.</p>
    <div class="price"><s>₹24,999</s> ₹999 <span class="off">96% off</span></div>
    <p class="until">Offer price valid only till 31 December 2026.</p>
@@ -796,13 +799,13 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
    <a id="buyNow" href="#" data-pay="PAYMENT_LINK_URL_HERE" style="display:none">Buy now</a>
   </article>
   <article class="plan ob">
-   <span class="badge">Offline + cloud backup</span>
-   <h3>Online Backup</h3>
+   <span class="badge">Online Backup edition</span>
+   <h3>Desktop Offline + Cloud Backup Application</h3>
    <p class="sub">Everything in Offline, plus an hourly copy in the Kuttu cloud.</p>
    <div class="price"><s>₹50,000</s> ₹4,999 <span class="off">90% off</span></div>
    <p class="until">Offer price valid only till 31 December 2026.</p>
    <ul class="chk">
-    <li>Everything in the Offline edition</li>
+    <li>Everything in the Desktop Offline Application</li>
     <li>Hourly backup copy in the Kuttu cloud, while Kuttu is open</li>
     <li>Cloud copies kept for one week</li>
     <li>Back up now and Restore from backup</li>
@@ -816,8 +819,8 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
 
  <h3 class="cmp-h">Compare the two editions</h3>
  <div class="cmpwrap"><table class="cmp">
- <caption class="sr">What is included in the Offline and Online Backup editions of Kuttu</caption>
- <thead><tr><th scope="col">What you get</th><th scope="col">Offline<small>₹999</small></th><th scope="col" class="ob">Online Backup<small>₹4,999</small></th></tr></thead>
+ <caption class="sr">What is included in the Desktop Offline Application and the Desktop Offline + Cloud Backup Application</caption>
+ <thead><tr><th scope="col">What you get</th><th scope="col">Desktop Offline Application<small>₹999</small></th><th scope="col" class="ob">Desktop Offline + Cloud Backup Application<small>₹4,999</small></th></tr></thead>
  <tbody>
  <tr class="grp"><th colspan="3" scope="colgroup">Price and license</th></tr>
  <tr><th scope="row">Offer price (valid only till 31 December 2026)</th><td>₹999</td><td>₹4,999</td></tr>
