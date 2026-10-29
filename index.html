@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Kuttu — Boutique, Tailoring &amp; Garment Shop Software</title>
+<title>Kuttu — Software for Garment Factories, Showrooms, Tailors &amp; Boutiques</title>
 <meta name="description" content="Kuttu is offline-ready Windows software for garment factories, wholesalers, showrooms, tailoring shops and boutiques: stock, GST bills, stitching, staff pay.">
-<meta property="og:title" content="Kuttu — Boutique, Tailoring &amp; Garment Shop Software">
+<meta property="og:title" content="Kuttu — Software for Garment Factories, Showrooms, Tailors &amp; Boutiques">
 <meta property="og:description" content="Stock, sales, GST bills, stitching orders and staff tracking in one Windows suite that works offline.">
 <link rel="canonical" href="https://kuttu.org/">
 <meta property="og:url" content="https://kuttu.org/">
@@ -167,6 +167,7 @@ ul.chk li:before{content:"✓";position:absolute;left:0;color:#fff;background:va
 .plan .badge{align-self:flex-start;font:700 .72rem/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;background:var(--gold-l);color:var(--teal-d);padding:6px 12px;border-radius:99px;margin-bottom:12px}
 .plan .sub{color:var(--mute);margin:.35rem 0 .9rem}
 .plan .price s{font-size:1.5rem;color:var(--mute);font-weight:500}
+.offer-gone .offer-only{display:none}.offer-gone .offer-price{font-size:1.6rem}
 .plan .until{margin:2px 0 6px;font-weight:700;color:var(--red)}
 .plan ul.chk{margin:12px 0 20px}
 .plan .acts{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}
@@ -777,14 +778,14 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
 
 <section id="pricing"><div class="wrap">
  <span class="eyebrow">Pricing</span><h2>Two editions. The same whole suite.</h2>
- <p class="lead">Both editions have all eleven modules, one PC and one year. Online Backup adds an hourly copy of your data in the Kuttu cloud. <b>Offer prices are valid only till 31 December 2026.</b></p>
+ <p class="lead">Both editions have all eleven modules, one PC and one year. Online Backup adds an hourly copy of your data in the Kuttu cloud. <b class="offer-only">Offer prices are valid only till 31 December 2026.</b></p>
  <div class="plans">
   <article class="plan">
    <span class="badge">Offline edition</span>
    <h3>Desktop Offline Application</h3>
    <p class="sub">Your data stays on your PC.</p>
-   <div class="price"><s>₹24,999</s> ₹999 <span class="off">96% off</span></div>
-   <p class="until">Offer price valid only till 31 December 2026.</p>
+   <div class="price offer-price"><s>₹24,999</s> ₹999 <span class="off">96% off</span></div>
+   <p class="until offer-only">Offer price valid only till 31 December 2026.</p>
    <ul class="chk">
     <li>All eleven modules, one Home screen</li>
     <li>Works fully offline, no internet needed</li>
@@ -802,8 +803,8 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
    <span class="badge">Online Backup edition</span>
    <h3>Desktop Offline + Cloud Backup Application</h3>
    <p class="sub">Everything in Offline, plus an hourly copy in the Kuttu cloud.</p>
-   <div class="price"><s>₹50,000</s> ₹4,999 <span class="off">90% off</span></div>
-   <p class="until">Offer price valid only till 31 December 2026.</p>
+   <div class="price offer-price"><s>₹50,000</s> ₹4,999 <span class="off">90% off</span></div>
+   <p class="until offer-only">Offer price valid only till 31 December 2026.</p>
    <ul class="chk">
     <li>Everything in the Desktop Offline Application</li>
     <li>Hourly backup copy in the Kuttu cloud, while Kuttu is open</li>
@@ -823,7 +824,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <thead><tr><th scope="col">What you get</th><th scope="col">Desktop Offline Application<small>₹999</small></th><th scope="col" class="ob">Desktop Offline + Cloud Backup Application<small>₹4,999</small></th></tr></thead>
  <tbody>
  <tr class="grp"><th colspan="3" scope="colgroup">Price and license</th></tr>
- <tr><th scope="row">Offer price (valid only till 31 December 2026)</th><td>₹999</td><td>₹4,999</td></tr>
+ <tr class="offer-row"><th scope="row">Offer price (valid only till 31 December 2026)</th><td>₹999</td><td>₹4,999</td></tr>
  <tr><th scope="row">Regular price</th><td><s>₹24,999</s></td><td><s>₹50,000</s></td></tr>
  <tr><th scope="row">License</th><td>One PC · one year · one key</td><td>One PC · one year · one key (application included)</td></tr>
  <tr><th scope="row">Upgrading later</th><td>Upgrade to Online Backup for ₹4,000</td><td><span class="no" aria-hidden="true">—</span><span class="sr">Not included</span></td></tr>
@@ -846,7 +847,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <tr><th scope="row">Internet</th><td>Not needed</td><td>Only for the hourly cloud backup</td></tr>
  </tbody>
  </table></div>
- <p class="cmpnote">Prices are for one PC for one year and are valid only till 31 December 2026. Licensed for <b>one PC for one year</b>, activated with a key tied to that PC. <a href="#faq">Details</a></p>
+ <p class="cmpnote">Prices are for one PC for one year<span class="offer-only"> and are valid only till 31 December 2026</span>. Licensed for <b>one PC for one year</b>, activated with a key tied to that PC. <a href="#faq">Details</a></p>
 
  <div class="two">
   <div class="role"><h3>How to buy</h3>
@@ -971,7 +972,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <ul class="chk">
   <li><b>What you are buying:</b> a license to use the Kuttu Application, a Windows desktop suite for the garment industry, made for factories, wholesalers, garment showrooms, tailoring shops and boutiques, on one PC for one year, from the date we send you your download link and license key.</li>
   <li><b>One license, one PC, one year:</b> a license covers one PC for one year, activated with a key made for that PC. If your computer changes, send us the new Machine ID and we reply with a new key. Please do not copy, share or resell the software or your key, and do not try to get around the activation. After the year, the app asks for a new key; the renewal price is available on request.</li>
-  <li><b>Price and payment:</b> the price is the one shown on this website when you buy. The ₹999 (Offline) and ₹4,999 (Online Backup) offer prices are valid only till 31 December 2026; offers can change or end. We confirm your payment with you before sending the download link and key.</li>
+  <li><b>Price and payment:</b> the price is the one shown on this website when you buy.<span class="offer-only"> The ₹999 (Offline) and ₹4,999 (Online Backup) offer prices are valid only till 31 December 2026.</span> Offers can change or end. We confirm your payment with you before sending the download link and key.</li>
   <li><b>No refunds:</b> because the purchase covers a one-year license that we activate for your PC, there are no refunds. Please ask us any questions before you buy.</li>
   <li><b>Updates:</b> bug fixes are free for customers who have bought a license; we send the new installer and it keeps your data and your license. New modules are paid add-ons, and we tell you the price before you decide. Updates never install by themselves.</li>
   <li><b>Your data and backups:</b> Kuttu keeps your shop's records on your own PC. They are yours. With the Offline edition we do not hold them, so we cannot recover them if they are lost; please back up the data folder every week to a pen drive or an external drive. With the Online Backup edition, Kuttu also sends a backup copy of your records to our cloud storage every hour while Kuttu is open (and once more as it closes) and keeps the copies for one week, so you can bring them back with Restore from backup. The hourly backup and Restore from backup work while your license is valid. Please still keep your own weekly copy as well.</li>
@@ -1170,6 +1171,19 @@ window.KUTTU_FIREBASE = {
 /* Visit counting (Google Analytics 4). Paste the web data stream's Measurement ID (G-XXXXXXXXXX) here to switch it on.
    Until then nothing is loaded and no notice is shown. Even when it is on, nothing is counted until the visitor taps "Yes". */
 window.KUTTU_ANALYTICS_ID = "G-6LQS69W4H0";
+/* The offer prices end on 31 December 2026 (India time). From 1 January 2027 the page stops showing the offer: the
+   "valid only till" lines disappear and each price says "Message us for the current price". Edit the date here if it changes. */
+(function () {
+  if (new Date() < new Date('2027-01-01T00:00:00+05:30')) return;
+  document.documentElement.classList.add('offer-gone');
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.offer-price').forEach(function (e) { e.textContent = 'Message us for the current price'; });
+    document.querySelectorAll('.offer-row').forEach(function (r) {
+      r.querySelector('th').textContent = 'Price';
+      r.querySelectorAll('td').forEach(function (d) { d.textContent = 'Message us'; });
+    });
+  });
+})();
 window.KUTTU_APPCHECK_KEY = "6Lebru0tAAAAAJwBF4p29BYkt3Oesr_0HSo4iqax";
 /* Address of the requestNewLink function (printed when you deploy the functions; see firebase/SETUP.md, section 7). */
 window.KUTTU_NEWLINK_URL = "REQUEST_NEW_LINK_FUNCTION_URL_HERE";
