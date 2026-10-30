@@ -994,7 +994,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <ul class="chk">
   <li><b>What we collect when you sign up:</b> your name and email address or mobile number, from the sign-in method you choose (Google or email). If you sign in with email and password, we never see your password.</li>
   <li><b>Your profile:</b> after you sign in we also ask for your mobile number, shop or business name, type of shop, city, state, pincode and country, and (if you choose) your GST number. You can view and change them any time from <b>My profile</b>, which also lists your purchases (reference, date, amount, status) and billing details, matched by your verified email address.</li>
-  <li><b>Bug and change reports:</b> if you send one from <b>My profile</b>, we store its title, details, the part of Kuttu it is about, your name, shop name, email and mobile number, so we can reply and fix it. Only Kuttu staff can read these. They are deleted with your account only if you ask us to remove them (enquiry@kuttu.org).</li>
+  <li><b>Bug and change reports:</b> if you send one from <b>My profile</b>, we store its title, details, the part of Kuttu it is about, your name, shop name, email and mobile number, and any photos or screenshots you attach, so we can reply and fix it. Only Kuttu staff can read these. They are deleted with your account only if you ask us to remove them (enquiry@kuttu.org).</li>
   <li><b>Deleting your account:</b> sign in, open <b>My profile</b> and choose <b>Delete my account</b> at the bottom. This removes your sign-in and the profile you saved. Records of purchases (payment reference, date and amount) are kept for our accounts and support; write to enquiry@kuttu.org to have those removed as well. A Kuttu license already installed on your PC keeps working.</li>
   <li><b>Visit counting:</b> only if you tap Yes on the small notice, and only once a Google Analytics ID has been set up, Kuttu counts visits to this website (which pages are opened, from which country and device type, and how people found us) using Google Analytics. It does not collect your name, phone number or email for this, and no advertising is built on it. If you tap No, nothing is loaded. To change your answer, clear this site's data in your browser.</li>
   <li><b>Why:</b> to create your account, let you buy Kuttu, send your download and license key, and give you support. Nothing else.</li>
@@ -1102,6 +1102,9 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
    </div>
    <label for="tkSubject">Short title</label><input type="text" id="tkSubject" maxlength="100" autocomplete="off">
    <label for="tkBody">Details</label><textarea id="tkBody" maxlength="1500" placeholder="What happened or what you need, and the steps to repeat it."></textarea>
+   <div id="tkPhotoBox"><label for="tkPhotos">Photos or screenshots <small>(optional, up to 10)</small></label>
+    <input type="file" id="tkPhotos" accept="image/*" multiple>
+    <div class="mini" id="tkPhotoInfo">Add pictures that show the problem. Large pictures are made smaller automatically before they are sent.</div></div>
    <button type="button" class="pbtn" id="tkGo">Send to Kuttu</button>
    <div class="msg" id="tkOut" role="status"></div>
    <div id="tkList"></div>
@@ -1761,7 +1764,28 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   function tkSay(t, ok) { $('tkOut').textContent = t || ''; $('tkOut').className = 'msg' + (ok ? ' ok' : ''); }
   function resetTicket(show) {
     $('prTk').hidden = !show; $('tkSubject').value = ''; $('tkBody').value = ''; $('tkList').textContent = ''; tkSay('');
-    $('tkGo').disabled = false;
+    $('tkGo').disabled = false; $('tkPhotos').value = ''; tkPhotoNote(); tkToggle();
+  }
+  var TK_PHOTOS_MAX = 10;
+  function tkToggle() { $('tkPhotoBox').hidden = $('tkType').value !== 'Bug'; }
+  function tkPhotoNote() {
+    var n = ($('tkPhotos').files || []).length;
+    $('tkPhotoInfo').textContent = n ? n + ' picture' + (n === 1 ? '' : 's') + ' chosen.' : 'Add pictures that show the problem. Large pictures are made smaller automatically before they are sent.';
+  }
+  $('tkType').onchange = tkToggle; $('tkPhotos').onchange = tkPhotoNote;
+  function tkShrink(file) {        // a phone photo or screenshot becomes a JPEG of at most 1800 px, so uploads are quick
+    return new Promise(function (res, rej) {
+      var url = URL.createObjectURL(file), img = new Image();
+      img.onload = function () {
+        var k = Math.min(1, 1800 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+        c.width = Math.max(1, Math.round(img.width * k)); c.height = Math.max(1, Math.round(img.height * k));
+        var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (b) { b ? res(b) : rej(new Error('image')); }, 'image/jpeg', 0.85);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); rej(new Error('image')); };
+      img.src = url;
+    });
   }
   function loadMyTickets(u) {
     var box = $('tkList'); box.textContent = '';
@@ -1772,7 +1796,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
       box.appendChild(el('p', { cls: 'mini', text: 'Your reports so far:' }));
       rows.slice(0, 10).forEach(function (t) {
         box.appendChild(el('div', { cls: 'tkrow' }, [el('span', { cls: 'tkst', text: t.status || 'New' }),
-          el('b', { text: t.subject }), el('div', { cls: 'mini', text: t.type + ' \u00B7 ' + t.module + ' \u00B7 ' + fmt(t.createdAt) })]));
+          el('b', { text: t.subject }), el('div', { cls: 'mini', text: t.type + ' \u00B7 ' + t.module + ' \u00B7 ' + fmt(t.createdAt) + (t.photos && t.photos.length ? ' \u00B7 ' + t.photos.length + ' picture' + (t.photos.length === 1 ? '' : 's') : '') })]));
       });
     }).catch(function () {});
   }
@@ -1787,14 +1811,33 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
       phone: String(p.phone || '').slice(0, 24), shopName: String(p.shopName || '').slice(0, 120),
       type: $('tkType').value, module: $('tkModule').value, subject: subject.slice(0, 100), details: body.slice(0, 1500),
       status: 'New', createdAt: firebase.firestore.FieldValue.serverTimestamp() };
+    var files = $('tkType').value === 'Bug' ? [].slice.call($('tkPhotos').files || []) : [];
+    if (files.length > TK_PHOTOS_MAX) { tkSay('Please choose up to ' + TK_PHOTOS_MAX + ' photos or screenshots.'); return; }
+    for (var fi = 0; fi < files.length; fi++) {
+      if (!/^image\//.test(files[fi].type)) { tkSay('Only pictures (photos or screenshots) can be attached.'); return; }
+      if (files[fi].size > 30 * 1024 * 1024) { tkSay('One picture is too large. Please choose pictures under 30 MB.'); return; }
+    }
     $('tkGo').disabled = true; tkSay('Sending\u2026', true);
-    within(needDb().then(function () { return db.collection('tickets').add(d); }), 15000).then(function () {
-      tkBump(); $('tkSubject').value = ''; $('tkBody').value = '';
+    var work = !files.length ? needDb().then(function () { return db.collection('tickets').add(d); }) : need().then(function () {
+      var ref = db.collection('tickets').doc(), paths = [];
+      return files.reduce(function (chain, f, i) {
+        return chain.then(function () {
+          tkSay('Uploading picture ' + (i + 1) + ' of ' + files.length + '\u2026', true);
+          return tkShrink(f).then(function (blob) {
+            var path = 'reports/' + u.uid + '/' + ref.id + '/' + (i + 1) + '.jpg';
+            return st.ref(path).put(blob, { contentType: 'image/jpeg' }).then(function () { paths.push(path); });
+          });
+        });
+      }, Promise.resolve()).then(function () { d.photos = paths; return ref.set(d); });
+    });
+    within(work, 180000).then(function () {
+      tkBump(); $('tkSubject').value = ''; $('tkBody').value = ''; $('tkPhotos').value = ''; tkPhotoNote();
       tkSay('Thank you. We have your ' + (d.type === 'Bug' ? 'bug report' : 'request') + ' and will reply on your mobile number.', true);
       $('tkGo').disabled = false; loadMyTickets(u);
-    }).catch(function () {
+    }).catch(function (e) {
       $('tkGo').disabled = false;
-      tkSay('Could not send it. Please try again, or message us on WhatsApp.');
+      tkSay(e && e.message === 'image' ? 'One of the pictures could not be read. Please use a JPG or PNG picture.'
+        : 'Could not send it. Please try again, or message us on WhatsApp.');
     });
   };
   $('prClose').onclick = closeProfile; $('prPriv').onclick = closeProfile;
@@ -1901,6 +1944,19 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   }
   ['stQ', 'stFr', 'stFs'].forEach(function (id) { $(id).addEventListener('input', renderApps); });
   var TK_STATUSES = ['New', 'Seen', 'In progress', 'Done', "Won't do"];
+  function photoLinks(t) {
+    var box = el('div', { style: 'margin-top:6px' });
+    (t.photos || []).forEach(function (path, i) {
+      var b = el('button', { cls: 'abtn alt', type: 'button', text: 'Picture ' + (i + 1), style: 'margin:0 6px 4px 0' });
+      b.onclick = function () {
+        b.disabled = true;
+        st.ref(path).getDownloadURL().then(function (url) { window.open(url, '_blank', 'noopener'); b.disabled = false; })
+          .catch(function () { b.disabled = false; $('stMsg').className = 'msg'; $('stMsg').textContent = 'Could not open that picture.'; });
+      };
+      box.appendChild(b);
+    });
+    return box;
+  }
   function loadReports() {
     db.collection('tickets').orderBy('createdAt', 'desc').limit(300).get().then(function (snap) {
       var list = snap.docs.map(function (d) { var x = d.data(); x.id = d.id; return x; }), body = $('stTkRows'); body.textContent = '';
@@ -1917,7 +1973,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
           el('a', { href: 'mailto:' + encodeURIComponent(t.email).replace('%40', '@'), text: t.email }), el('br'),
           el('a', { href: 'tel:' + String(t.phone).replace(/[^0-9+]/g, ''), text: t.phone })]);
         body.appendChild(el('tr', {}, [el('td', { text: fmt(t.createdAt) }), from, el('td', { text: t.type }),
-          el('td', { cls: 'msgcell' }, [el('b', { text: t.module + ': ' + t.subject }), el('div', { text: t.details })]), el('td', {}, [sel])]));
+          el('td', { cls: 'msgcell' }, [el('b', { text: t.module + ': ' + t.subject }), el('div', { text: t.details }), photoLinks(t)]), el('td', {}, [sel])]));
       });
     }).catch(function () {});
   }
