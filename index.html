@@ -994,7 +994,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <ul class="chk">
   <li><b>What we collect when you sign up:</b> your name and email address or mobile number, from the sign-in method you choose (Google or email). If you sign in with email and password, we never see your password.</li>
   <li><b>Your profile:</b> after you sign in we also ask for your mobile number, shop or business name, type of shop, city, state, pincode and country, and (if you choose) your GST number. You can view and change them any time from <b>My profile</b>, which also lists your purchases (reference, date, amount, status) and billing details, matched by your verified email address.</li>
-  <li><b>Bug and change reports:</b> <b>My profile</b> links to our Google Form. What you type or upload there (your shop name, mobile and WhatsApp number, email, the problem and any screenshot) is stored in Google Forms and used only so we can reply and fix it. Reports sent earlier from the website are kept in our database; only Kuttu staff can read them, and you can ask us to remove them (enquiry@kuttu.org).</li>
+  <li><b>Bug and change reports:</b> <b>My profile</b> links to our Google Form. What you type or upload there (your shop name, mobile and WhatsApp number, email, the problem and any screenshot) is stored in Google Forms and used only so we can reply and fix it. The customer code is worked out from your account and lets us confirm you are a registered customer. Reports sent earlier from the website are kept in our database; only Kuttu staff can read them, and you can ask us to remove them (enquiry@kuttu.org).</li>
   <li><b>Deleting your account:</b> sign in, open <b>My profile</b> and choose <b>Delete my account</b> at the bottom. This removes your sign-in and the profile you saved. Records of purchases (payment reference, date and amount) are kept for our accounts and support; write to enquiry@kuttu.org to have those removed as well. A Kuttu license already installed on your PC keeps working.</li>
   <li><b>Visit counting:</b> only if you tap Yes on the small notice, and only once a Google Analytics ID has been set up, Kuttu counts visits to this website (which pages are opened, from which country and device type, and how people found us) using Google Analytics. It does not collect your name, phone number or email for this, and no advertising is built on it. If you tap No, nothing is loaded. To change your answer, clear this site's data in your browser.</li>
   <li><b>Why:</b> to create your account, let you buy Kuttu, send your download and license key, and give you support. Nothing else.</li>
@@ -1093,7 +1093,9 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
   <section class="pbuy" id="prBuy" hidden aria-label="Purchases and billing"></section>
   <section class="ptk" id="prTk" hidden aria-label="Report a bug or request a change">
    <h4>Report a bug or request a change</h4>
-   <p class="mini">Something not working, or need a change? Fill in our Google Form. You can add screenshots there. We reply on your mobile or WhatsApp number.</p>
+   <p class="mini">Something not working, or need a change? Fill in our Google Form. You can add screenshots there. The form asks for your <b>customer code</b>, so keep this page open or copy it first. We reply on your mobile or WhatsApp number.</p>
+   <div class="mini" style="margin:10px 0">Your customer code: <b id="tkCode" style="letter-spacing:.06em">&hellip;</b>
+    <button type="button" class="pbtn" id="tkCodeCopy" style="padding:4px 12px;margin:0 0 0 8px;font-size:.8rem">Copy</button> <span id="tkCodeMsg"></span></div>
    <a class="pbtn" id="tkForm" style="display:inline-block;text-decoration:none;text-align:center" href="https://docs.google.com/forms/d/e/1FAIpQLScD0gJ8JM4QGk7uDdBYxzh_Mh-vamQqdizkUfZdcg1I1AulCw/viewform?usp=header" target="_blank" rel="noopener">Open the Google Form</a>
    <div class="mini">It opens in a new tab.</div>
   </section>
@@ -1157,6 +1159,11 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
     <button class="abtn alt" id="stCsv">Export list (CSV)</button>
     <button class="abtn alt" id="stRf">Refresh</button>
    </div>
+   <div class="tools" style="margin-top:6px">
+    <input type="text" id="stCode" placeholder="Customer code from the support form, e.g. KUT-AB12CD34" maxlength="20">
+    <button class="abtn alt" id="stCodeGo">Check customer code</button>
+   </div>
+   <div class="msg" id="stCodeOut" role="status"></div>
    <div class="msg" id="stMsg" role="status"></div>
    <div class="tablewrap"><table>
     <thead><tr><th>Received</th><th>Candidate</th><th>Role</th><th>Message</th><th>Status</th><th>Resume</th></tr></thead>
@@ -1745,7 +1752,20 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
     });
   };
   /* ---------- Report a bug or request a change: the Google Form link in My profile ---------- */
-  function resetTicket(show) { $('prTk').hidden = !show; }
+  function custCode(uid) {          // KUT- plus 8 letters/digits worked out from the account id; the form only accepts this shape
+    var h1 = 2166136261, h2 = 5381;
+    for (var i = 0; i < uid.length; i++) { var c = uid.charCodeAt(i); h1 = Math.imul(h1 ^ c, 16777619) >>> 0; h2 = (Math.imul(h2, 33) ^ c) >>> 0; }
+    return 'KUT-' + ((h1.toString(36) + h2.toString(36)).toUpperCase().replace(/[^A-Z0-9]/g, '') + '00000000').slice(0, 8);
+  }
+  function resetTicket(show) {
+    $('prTk').hidden = !show; $('tkCodeMsg').textContent = '';
+    var u = pUser(); $('tkCode').textContent = u ? custCode(u.uid) : '\u2026';
+  }
+  $('tkCodeCopy').onclick = function () {
+    var t = $('tkCode').textContent, m = $('tkCodeMsg');
+    function done(ok) { m.textContent = ok ? 'Copied.' : 'Please select and copy the code.'; }
+    try { navigator.clipboard.writeText(t).then(function () { done(true); }, function () { done(false); }); } catch (e) { done(false); }
+  };
   function loadMyTickets() {}
   $('prClose').onclick = closeProfile; $('prPriv').onclick = closeProfile;
   pm.addEventListener('click', function (e) { if (e.target === pm) closeProfile(); });
@@ -1884,6 +1904,20 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
       });
     }).catch(function () {});
   }
+  $('stCodeGo').onclick = function () {
+    var q = $('stCode').value.trim().toUpperCase(), out = $('stCodeOut');
+    out.className = 'msg'; out.textContent = '';
+    if (!/^KUT-[A-Z0-9]{8}$/.test(q)) { out.textContent = 'A customer code looks like KUT-AB12CD34.'; return; }
+    if (!db) { out.textContent = 'Sign in as staff first.'; return; }
+    out.textContent = 'Checking\u2026'; out.className = 'msg ok';
+    within(db.collection('profiles').limit(2000).get(), 20000).then(function (snap) {
+      var hit = snap.docs.filter(function (d) { return custCode(d.id) === q; })[0];
+      if (!hit) { out.className = 'msg'; out.textContent = 'No registered customer has this code. Do not treat the request as a customer.'; return; }
+      var p = hit.data();
+      out.className = 'msg ok';
+      out.textContent = 'Registered customer: ' + [p.name, p.shopName, p.email, p.phone].filter(Boolean).join(' \u00B7 ');
+    }).catch(function () { out.className = 'msg'; out.textContent = 'Could not check. Please try again.'; });
+  };
   $('stRf').onclick = function () { if (db) { loadApps(); loadReports(); } };
   $('stCsv').onclick = function () {
     var rows = [['Received', 'Name', 'Email', 'Phone', 'Role', 'Status', 'Message', 'Resume file']].concat(viewApps().map(function (a) { return [fmt(a.createdAt), a.name, a.email, a.phone, a.role, a.status, a.message || '', a.resumeName || '']; }));
