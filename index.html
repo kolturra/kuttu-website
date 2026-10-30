@@ -317,6 +317,11 @@ footer .social span{display:none}
 .consent{display:flex!important;gap:10px;align-items:flex-start;font-weight:400!important;font-size:.84rem!important;color:var(--mute);margin-top:16px!important}
 .consent input{width:auto!important;margin:4px 0 0!important}
 .pbuy{margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
+.ptk{margin-top:24px;padding-top:16px;border-top:1px solid var(--line)}
+.ptk h4{font-size:1.1rem;margin:0 0 8px}.ptk .mini{color:var(--mute);font-size:.85rem;margin:6px 0}
+.ptk .pbtn{width:auto;padding:9px 18px;margin-top:12px}
+.ptk .tkrow{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.86rem;background:#fff}
+.ptk .tkrow b{color:var(--teal-d)}.ptk .tkst{float:right;font-weight:700;color:var(--gold)}
 .pdel{margin-top:22px;padding-top:14px;border-top:1px solid var(--line)}
 .pdel .dlink{background:none;border:0;color:var(--red);text-decoration:underline;cursor:pointer;font:600 .86rem var(--sans);padding:0}
 .pdel h4{font-size:1.05rem;margin:0 0 8px;color:var(--red)}.pdel .mini{color:var(--mute);font-size:.85rem;margin:6px 0}
@@ -886,7 +891,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <details><summary>What if I change my PC or reinstall Windows?</summary><p>The license is tied to the PC. If the computer changes, Kuttu shows a new Machine ID — send it to us and we reply with a new key. Copy your data folder across to keep your records.</p></details>
  <details><summary>Do you train our staff?</summary><p>Yes — we can help in Telugu or Hindi as well as English. Message us on WhatsApp.</p></details>
  <details><summary>Will I get updates? Are they free?</summary><p><b>Common updates (with bug fixes) are free for customers who have bought a license. They are the improvements we release for every customer.</b> When there's a fix, we send you the new installer. Run it over your existing Kuttu — your data and your license are kept, so you don't enter anything again. Updates never install by themselves, so nothing changes until you choose to. <b>New modules are paid add-ons</b>, and we'll tell you the price before you decide. Each program's version is in its file properties (right-click the file, then Properties, then Details), so you always know what you have. Before updating, it's good practice to copy your data folder as a backup.</p></details>
-<details><summary>Can you make a change just for my business?</summary><p>Yes. A customised change or enhancement is built for the customer who asks for it and stays with that customer; it is not part of the common updates (with bug fixes). Custom development and enhancements are charged accordingly, and we agree the price with you before we start. Message us on WhatsApp or call +91 72076 29246 and tell us what you need.</p></details>
+<details><summary>Can you make a change just for my business?</summary><p>Yes. A customised change or enhancement is built for the customer who asks for it and stays with that customer; it is not part of the common updates (with bug fixes). Custom development and enhancements are charged accordingly, and we agree the price with you before we start. Signed-in customers can send it from <b>My profile &rarr; Report a bug or request a change</b>, or message us on WhatsApp or call +91 72076 29246.</p></details>
  <details><summary>What if installation goes wrong?</summary><p>Message us on WhatsApp or email and we'll help you get running.</p></details>
  <details><summary>What is the refund policy?</summary><p>There are no refunds. Your purchase covers a one-year license for one PC, so please ask us any questions before you buy. See the <a href="#terms">Terms and Conditions</a>.</p></details>
 </div></section>
@@ -989,6 +994,7 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
  <ul class="chk">
   <li><b>What we collect when you sign up:</b> your name and email address or mobile number, from the sign-in method you choose (Google or email). If you sign in with email and password, we never see your password.</li>
   <li><b>Your profile:</b> after you sign in we also ask for your mobile number, shop or business name, type of shop, city, state, pincode and country, and (if you choose) your GST number. You can view and change them any time from <b>My profile</b>, which also lists your purchases (reference, date, amount, status) and billing details, matched by your verified email address.</li>
+  <li><b>Bug and change reports:</b> if you send one from <b>My profile</b>, we store its title, details, the part of Kuttu it is about, your name, shop name, email and mobile number, so we can reply and fix it. Only Kuttu staff can read these. They are deleted with your account only if you ask us to remove them (enquiry@kuttu.org).</li>
   <li><b>Deleting your account:</b> sign in, open <b>My profile</b> and choose <b>Delete my account</b> at the bottom. This removes your sign-in and the profile you saved. Records of purchases (payment reference, date and amount) are kept for our accounts and support; write to enquiry@kuttu.org to have those removed as well. A Kuttu license already installed on your PC keeps working.</li>
   <li><b>Visit counting:</b> only if you tap Yes on the small notice, and only once a Google Analytics ID has been set up, Kuttu counts visits to this website (which pages are opened, from which country and device type, and how people found us) using Google Analytics. It does not collect your name, phone number or email for this, and no advertising is built on it. If you tap No, nothing is loaded. To change your answer, clear this site's data in your browser.</li>
   <li><b>Why:</b> to create your account, let you buy Kuttu, send your download and license key, and give you support. Nothing else.</li>
@@ -1085,6 +1091,21 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
    <div class="msg" id="prOut" role="status"></div>
   </form>
   <section class="pbuy" id="prBuy" hidden aria-label="Purchases and billing"></section>
+  <section class="ptk" id="prTk" hidden aria-label="Report a bug or request a change">
+   <h4>Report a bug or request a change</h4>
+   <p class="mini">Something not working, or need a change? Tell us here. We reply on the mobile number in your profile.</p>
+   <div class="frow">
+    <div><label for="tkType">What is it?</label>
+     <select id="tkType"><option value="Bug">Bug (something is not working)</option><option value="Development request">Development request (a change or new feature)</option></select></div>
+    <div><label for="tkModule">Which part?</label>
+     <select id="tkModule"><option>Home screen</option><option>Astar Ledger</option><option>Astar Sale</option><option>Saree Ledger</option><option>Saree Sale</option><option>Readymade Ledger</option><option>Readymade Sale</option><option>Stitching Measurement</option><option>Employee Tracker</option><option>Print Bill</option><option>Stationery &amp; Misc Purchases</option><option>Salary &amp; Rent</option><option>Consolidated Analytics</option><option>GST Summary</option><option>Installing or license</option><option>This website</option><option>Something else</option></select></div>
+   </div>
+   <label for="tkSubject">Short title</label><input type="text" id="tkSubject" maxlength="100" autocomplete="off">
+   <label for="tkBody">Details</label><textarea id="tkBody" maxlength="1500" placeholder="What happened or what you need, and the steps to repeat it."></textarea>
+   <button type="button" class="pbtn" id="tkGo">Send to Kuttu</button>
+   <div class="msg" id="tkOut" role="status"></div>
+   <div id="tkList"></div>
+  </section>
   <section class="pdel" id="prDel" hidden aria-label="Delete account">
    <button type="button" class="dlink" id="prDelOpen">Delete my account</button>
    <div id="prDelBox" hidden>
@@ -1149,6 +1170,12 @@ footer h4{font:600 1.05rem var(--serif);color:#fff;margin:0 0 12px}
    <div class="tablewrap"><table>
     <thead><tr><th>Received</th><th>Candidate</th><th>Role</th><th>Message</th><th>Status</th><th>Resume</th></tr></thead>
     <tbody id="stRows"></tbody>
+   </table></div>
+   <h2 style="margin-top:34px">Bug and change reports</h2>
+   <p class="muted" id="stTkCount"></p>
+   <div class="tablewrap"><table>
+    <thead><tr><th>Received</th><th>From</th><th>Type</th><th>Report</th><th>Status</th></tr></thead>
+    <tbody id="stTkRows"></tbody>
    </table></div>
   </section>
  </div>
@@ -1553,6 +1580,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
     pm.classList.add('open');
     var buy = $('prBuy'); buy.hidden = true; buy.textContent = '';
     resetDelete(!first && !after);
+    resetTicket(!first && !after); if (!first && !after) loadMyTickets(u);
     if (!first && !after) renderPurchases(u);            // "My profile": also show purchases and billing
   }
 
@@ -1673,7 +1701,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
   window.addEventListener('kuttu-auth', function (e) {     // first sign-in: ask for the details once
     if (!e.detail || !e.detail.signedIn) {
       pAsked = false; pOld = null; pLoaded = false; closeProfile();
-      $('prForm').reset(); $('prPhone').value = ''; $('prState').value = ''; $('prStateSel').textContent = ''; $('prBuy').textContent = ''; $('prBuy').hidden = true; resetDelete(false); pSay('');
+      $('prForm').reset(); $('prPhone').value = ''; $('prState').value = ''; $('prStateSel').textContent = ''; $('prBuy').textContent = ''; $('prBuy').hidden = true; resetDelete(false); resetTicket(false); pSay('');
       return;
     }
     var u = pUser(); if (!u || !ready || pAsked) return;
@@ -1723,6 +1751,50 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
       else if (code === 'auth/network-request-failed' || (e && e.message === 'timeout')) delSay('No internet connection. Nothing was deleted. Please try again.');
       else if (code === 'auth/too-many-requests') delSay('Too many tries. Please wait a little and try again.');
       else delSay('Could not delete your account. Nothing was deleted. Please try again, or message us on WhatsApp.');
+    });
+  };
+  /* ---------- Report a bug or request a change (signed-in customers; stored in Firestore "tickets") ---------- */
+  var TK_DAILY_MAX = 5;
+  function tkToday() { return 'kuttuTk' + new Date().toISOString().slice(0, 10); }
+  function tkCount() { try { return Number(localStorage.getItem(tkToday()) || 0); } catch (e) { return 0; } }
+  function tkBump() { try { localStorage.setItem(tkToday(), String(tkCount() + 1)); } catch (e) {} }
+  function tkSay(t, ok) { $('tkOut').textContent = t || ''; $('tkOut').className = 'msg' + (ok ? ' ok' : ''); }
+  function resetTicket(show) {
+    $('prTk').hidden = !show; $('tkSubject').value = ''; $('tkBody').value = ''; $('tkList').textContent = ''; tkSay('');
+    $('tkGo').disabled = false;
+  }
+  function loadMyTickets(u) {
+    var box = $('tkList'); box.textContent = '';
+    within(needDb().then(function () { return db.collection('tickets').where('uid', '==', u.uid).get(); }), 10000).then(function (snap) {
+      var rows = snap.docs.map(function (d) { return d.data(); });
+      rows.sort(function (a, b) { var x = a.createdAt && a.createdAt.seconds || 0, y = b.createdAt && b.createdAt.seconds || 0; return y - x; });
+      if (!rows.length) return;
+      box.appendChild(el('p', { cls: 'mini', text: 'Your reports so far:' }));
+      rows.slice(0, 10).forEach(function (t) {
+        box.appendChild(el('div', { cls: 'tkrow' }, [el('span', { cls: 'tkst', text: t.status || 'New' }),
+          el('b', { text: t.subject }), el('div', { cls: 'mini', text: t.type + ' \u00B7 ' + t.module + ' \u00B7 ' + fmt(t.createdAt) })]));
+      });
+    }).catch(function () {});
+  }
+  $('tkGo').onclick = function () {
+    var u = pUser(); if (!u) { tkSay('Please sign in again.'); return; }
+    var subject = $('tkSubject').value.trim(), body = $('tkBody').value.trim();
+    if (subject.length < 5) { tkSay('Please give a short title (at least 5 letters).'); return; }
+    if (body.length < 10) { tkSay('Please add a few more details (at least 10 letters).'); return; }
+    if (tkCount() >= TK_DAILY_MAX) { tkSay('You have sent several reports today. Please message us on WhatsApp for anything urgent.'); return; }
+    var p = pOld || {};
+    var d = { uid: u.uid, name: String(p.name || u.displayName || '').slice(0, 100), email: String(u.email || p.email || '').slice(0, 150),
+      phone: String(p.phone || '').slice(0, 24), shopName: String(p.shopName || '').slice(0, 120),
+      type: $('tkType').value, module: $('tkModule').value, subject: subject.slice(0, 100), details: body.slice(0, 1500),
+      status: 'New', createdAt: firebase.firestore.FieldValue.serverTimestamp() };
+    $('tkGo').disabled = true; tkSay('Sending\u2026', true);
+    within(needDb().then(function () { return db.collection('tickets').add(d); }), 15000).then(function () {
+      tkBump(); $('tkSubject').value = ''; $('tkBody').value = '';
+      tkSay('Thank you. We have your ' + (d.type === 'Bug' ? 'bug report' : 'request') + ' and will reply on your mobile number.', true);
+      $('tkGo').disabled = false; loadMyTickets(u);
+    }).catch(function () {
+      $('tkGo').disabled = false;
+      tkSay('Could not send it. Please try again, or message us on WhatsApp.');
     });
   };
   $('prClose').onclick = closeProfile; $('prPriv').onclick = closeProfile;
@@ -1788,7 +1860,7 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
       var roles = {}; all.forEach(function (a) { roles[a.role] = 1; });
       var cur = $('stFr').value; $('stFr').textContent = ''; $('stFr').appendChild(el('option', { value: '', text: 'All roles' }));
       Object.keys(roles).sort().forEach(function (r) { $('stFr').appendChild(el('option', { value: r, text: r })); }); $('stFr').value = cur;
-      $('stMsg').textContent = ''; renderApps();
+      $('stMsg').textContent = ''; renderApps(); loadReports();
     }).catch(function () {
       $('stMsg').className = 'msg'; $('stMsg').textContent = 'You are signed in, but this account is not on the approved staff list (or the rules are not published yet).';
     });
@@ -1828,7 +1900,28 @@ var FIREBASE_CONFIG = window.KUTTU_FIREBASE || {
     });
   }
   ['stQ', 'stFr', 'stFs'].forEach(function (id) { $(id).addEventListener('input', renderApps); });
-  $('stRf').onclick = function () { if (db) loadApps(); };
+  var TK_STATUSES = ['New', 'Seen', 'In progress', 'Done', "Won't do"];
+  function loadReports() {
+    db.collection('tickets').orderBy('createdAt', 'desc').limit(300).get().then(function (snap) {
+      var list = snap.docs.map(function (d) { var x = d.data(); x.id = d.id; return x; }), body = $('stTkRows'); body.textContent = '';
+      $('stTkCount').textContent = list.length + ' report' + (list.length === 1 ? '' : 's');
+      if (!list.length) { body.appendChild(el('tr', {}, [el('td', { colspan: 5, cls: 'muted', text: 'No reports yet.' })])); return; }
+      list.forEach(function (t) {
+        var sel = el('select', { cls: 'stsel' });
+        TK_STATUSES.forEach(function (x) { var o = el('option', { text: x }); if (x === t.status) o.selected = true; sel.appendChild(o); });
+        sel.onchange = function () {
+          db.collection('tickets').doc(t.id).update({ status: sel.value }).then(function () { t.status = sel.value; })
+            .catch(function () { sel.value = t.status; });
+        };
+        var from = el('td', {}, [el('b', { text: t.name }), el('br'), el('span', { text: t.shopName || '' }), el('br'),
+          el('a', { href: 'mailto:' + encodeURIComponent(t.email).replace('%40', '@'), text: t.email }), el('br'),
+          el('a', { href: 'tel:' + String(t.phone).replace(/[^0-9+]/g, ''), text: t.phone })]);
+        body.appendChild(el('tr', {}, [el('td', { text: fmt(t.createdAt) }), from, el('td', { text: t.type }),
+          el('td', { cls: 'msgcell' }, [el('b', { text: t.module + ': ' + t.subject }), el('div', { text: t.details })]), el('td', {}, [sel])]));
+      });
+    }).catch(function () {});
+  }
+  $('stRf').onclick = function () { if (db) { loadApps(); loadReports(); } };
   $('stCsv').onclick = function () {
     var rows = [['Received', 'Name', 'Email', 'Phone', 'Role', 'Status', 'Message', 'Resume file']].concat(viewApps().map(function (a) { return [fmt(a.createdAt), a.name, a.email, a.phone, a.role, a.status, a.message || '', a.resumeName || '']; }));
     var csv = rows.map(function (r) { return r.map(function (c) { c = String(c).replace(/"/g, '""'); if (/^[=+\-@]/.test(c)) c = "'" + c; return '"' + c + '"'; }).join(','); }).join('\r\n');
